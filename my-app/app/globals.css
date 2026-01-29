@@ -1,26 +1,93 @@
 @import "tailwindcss";
 
+/* =====================================================
+   EDUCAÇÃO COMVIDA - Design System
+   Paleta institucional conforme manual da marca
+   ===================================================== */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Cores primárias da marca */
+  --azul-principal: #1599BD;
+  --azul-escuro: #0B284F;
+  --azul-destaque: #18BDD5;
+  --azul-institucional: #014F85;
+  
+  /* Cores de fundo e neutros */
+  --fundo-claro: #FBFBFB;
+  --cinza-leve: #E6E7E9;
+  --branco: #FFFFFF;
+  
+  /* Cores de texto */
+  --texto-primario: #0B284F;
+  --texto-secundario: #4A5568;
+  
+  /* Cores de estado */
+  --sucesso: #10B981;
+  --erro: #EF4444;
+  
+  /* Tokens semânticos */
+  --background: var(--fundo-claro);
+  --foreground: var(--texto-primario);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  
+  /* Brand colors para Tailwind */
+  --color-azul-principal: var(--azul-principal);
+  --color-azul-escuro: var(--azul-escuro);
+  --color-azul-destaque: var(--azul-destaque);
+  --color-azul-institucional: var(--azul-institucional);
+  --color-fundo-claro: var(--fundo-claro);
+  --color-cinza-leve: var(--cinza-leve);
+  
+  --font-sans: var(--font-inter);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Reset base */
+* {
+  box-sizing: border-box;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Inter', system-ui, sans-serif;
+  line-height: 1.6;
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Focus states acessíveis */
+*:focus-visible {
+  outline: 2px solid var(--azul-principal);
+  outline-offset: 2px;
+}
+
+/* Utility classes customizadas */
+.section-padding {
+  padding: 4rem 1rem;
+}
+
+@media (min-width: 768px) {
+  .section-padding {
+    padding: 6rem 2rem;
+  }
+}
+
+/* Container responsivo */
+.container-brand {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+@media (min-width: 768px) {
+  .container-brand {
+    padding: 0 2rem;
+  }
 }
