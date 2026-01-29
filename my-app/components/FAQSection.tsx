@@ -51,15 +51,15 @@ export function FAQSection() {
     }
 
     return (
-        <section className="section-padding">
+        <section className="bg-azul-institucional section-padding">
             <div className="container-brand">
                 <div className="max-w-3xl mx-auto">
                     {/* Título */}
                     <div className="text-center mb-12">
-                        <h2 className="font-primaria text-2xl md:text-3xl font-bold text-azul-escuro mb-4">
+                        <h2 className="font-primaria text-2xl md:text-3xl font-bold text-white mb-4">
                             Perguntas frequentes
                         </h2>
-                        <p className="text-texto-secundario">
+                        <p className="text-white/80">
                             Tire suas dúvidas sobre o programa de indicação.
                         </p>
                     </div>
@@ -69,22 +69,22 @@ export function FAQSection() {
                         {PERGUNTAS.map((item) => (
                             <div
                                 key={item.id}
-                                className="border border-cinza-leve rounded-lg overflow-hidden"
+                                className="border border-white/10 rounded-lg overflow-hidden"
                             >
                                 {/* Pergunta (botão) */}
                                 <button
                                     type="button"
                                     onClick={() => toggleQuestion(item.id)}
-                                    className="w-full px-6 py-4 flex items-center justify-between text-left bg-fundo-claro hover:bg-cinza-leve transition-colors"
+                                    className="w-full px-6 py-4 flex items-center justify-between text-left bg-white/5 hover:bg-white/10 transition-colors"
                                     aria-expanded={openId === item.id}
                                 >
-                                    <span className="font-primaria font-medium text-azul-escuro pr-4">
+                                    <span className="font-primaria font-medium text-white pr-4">
                                         {item.pergunta}
                                     </span>
 
                                     {/* Ícone */}
                                     <span
-                                        className={`flex-shrink-0 w-5 h-5 text-azul-principal transition-transform duration-200 ${openId === item.id ? "rotate-180" : ""
+                                        className={`flex-shrink-0 w-5 h-5 text-azul-destaque transition-transform duration-200 ${openId === item.id ? "rotate-180" : ""
                                             }`}
                                     >
                                         <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -95,8 +95,8 @@ export function FAQSection() {
 
                                 {/* Resposta */}
                                 {openId === item.id && (
-                                    <div className="px-6 py-4 bg-white border-t border-cinza-leve">
-                                        <p className="text-texto-secundario">
+                                    <div className="px-6 py-4 bg-white/5 border-t border-white/10">
+                                        <p className="text-white/80">
                                             {item.resposta}
                                         </p>
                                     </div>
@@ -111,7 +111,7 @@ export function FAQSection() {
                             href={REGULAMENTO_URL}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 text-azul-principal hover:text-azul-institucional font-medium transition-colors"
+                            className="inline-flex items-center gap-2 text-azul-destaque hover:text-white font-medium transition-colors"
                         >
                             Ver regulamento completo
                             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

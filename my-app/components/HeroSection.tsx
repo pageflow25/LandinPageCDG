@@ -11,11 +11,9 @@ import { LOGO_PRINCIPAL } from "@/lib/config";
  */
 export function HeroSection() {
     return (
-        <section className="relative bg-fundo-claro">
-            {/* Background sutil com gradiente */}
-            <div className="absolute inset-0 bg-gradient-to-b from-white to-fundo-claro" />
+        <section className="bg-azul-escuro">
 
-            <div className="relative container-brand section-padding">
+            <div className="container-brand section-padding">
                 <div className="flex flex-col items-center text-center max-w-3xl mx-auto">
                     {/* Logo */}
                     <div className="mb-8">
@@ -30,14 +28,14 @@ export function HeroSection() {
                     </div>
 
                     {/* Headline */}
-                    <h1 className="font-primaria text-3xl md:text-4xl lg:text-5xl font-bold text-azul-escuro leading-tight mb-6">
+                    <h1 className="font-primaria text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight mb-6">
                         Educação que conecta.
                         <br />
-                        <span className="text-azul-principal">Indicações que geram valor.</span>
+                        <span className="text-azul-destaque">Indicações que geram valor.</span>
                     </h1>
 
                     {/* Subheadline */}
-                    <p className="text-lg md:text-xl text-texto-secundario mb-8 max-w-2xl">
+                    <p className="text-lg md:text-xl text-white/90 mb-8 max-w-2xl">
                         Seja um embaixador da Casa da Gráfica. Indique novos clientes e receba
                         recompensas a cada indicação que se torna cliente.
                     </p>

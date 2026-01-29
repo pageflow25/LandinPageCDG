@@ -119,18 +119,3 @@ html {
     padding: 0 2rem;
   }
 }
-
-/* =====================================================
-   TEXTURAS
-   ===================================================== */
-
-/* Textura de linhas aplicada ao body para cobertura total */
-body {
-  background-color: #FBFBFB;
-  background-image: url('https://ik.imagekit.io/pageflow/Educa%C3%A7%C3%A3o-ComVida/linha4.svg');
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-position: center center;
-  background-size: cover;
-  min-height: 100vh;
-}

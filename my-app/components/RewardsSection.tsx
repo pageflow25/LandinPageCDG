@@ -37,14 +37,14 @@ const RECOMPENSAS = [
 
 export function RewardsSection() {
     return (
-        <section className="section-padding">
+        <section className="bg-azul-institucional section-padding">
             <div className="container-brand">
                 {/* Título da seção */}
                 <div className="text-center mb-12">
-                    <h2 className="font-primaria text-2xl md:text-3xl font-bold text-azul-escuro mb-4">
+                    <h2 className="font-primaria text-2xl md:text-3xl font-bold text-white mb-4">
                         Recompensas do Programa
                     </h2>
-                    <p className="text-texto-secundario max-w-2xl mx-auto">
+                    <p className="text-white/80 max-w-2xl mx-auto">
                         A cada indicação que se torna cliente, você recebe recompensas.
                         Quanto mais indicações, maiores os benefícios.
                     </p>
@@ -59,7 +59,7 @@ export function RewardsSection() {
                 relative p-6 rounded-xl border-2 transition-transform hover:scale-105
                 ${item.destaque
                                     ? "bg-azul-principal text-white border-azul-principal shadow-xl"
-                                    : "bg-fundo-claro border-cinza-leve hover:border-azul-destaque"
+                                    : "bg-white/10 border-white/20 hover:border-azul-destaque"
                                 }
               `}
                         >
@@ -71,12 +71,12 @@ export function RewardsSection() {
                             )}
 
                             {/* Recompensa primeiro (conforme especificação) */}
-                            <p className={`text-xl font-bold mb-3 ${item.destaque ? "text-white" : "text-azul-escuro"}`}>
+                            <p className={`text-xl font-bold mb-3 ${item.destaque ? "text-white" : "text-white"}`}>
                                 {item.recompensa}
                             </p>
 
                             {/* Número de indicações */}
-                            <p className={`text-sm ${item.destaque ? "text-white/90" : "text-texto-secundario"}`}>
+                            <p className={`text-sm ${item.destaque ? "text-white/90" : "text-white/70"}`}>
                                 {item.indicacoes === 1
                                     ? "1 indicação"
                                     : `${item.indicacoes} indicações`

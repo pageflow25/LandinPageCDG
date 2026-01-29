@@ -27,14 +27,14 @@ const PASSOS = [
 
 export function HowItWorksSection() {
     return (
-        <section className="bg-fundo-claro section-padding">
+        <section className="bg-azul-escuro section-padding">
             <div className="container-brand">
                 {/* Título */}
                 <div className="text-center mb-12">
-                    <h2 className="font-primaria text-2xl md:text-3xl font-bold text-azul-escuro mb-4">
+                    <h2 className="font-primaria text-2xl md:text-3xl font-bold text-white mb-4">
                         Como funciona
                     </h2>
-                    <p className="text-texto-secundario">
+                    <p className="text-white/80">
                         Três passos simples para você indicar e receber.
                     </p>
                 </div>
@@ -49,7 +49,7 @@ export function HowItWorksSection() {
                             >
                                 {/* Linha conectora (desktop) */}
                                 {index < PASSOS.length - 1 && (
-                                    <div className="hidden md:block absolute top-8 left-1/2 w-full h-0.5 bg-cinza-leve" />
+                                    <div className="hidden md:block absolute top-8 left-1/2 w-full h-0.5 bg-white/20" />
                                 )}
 
                                 {/* Número */}
@@ -58,12 +58,12 @@ export function HowItWorksSection() {
                                 </div>
 
                                 {/* Título */}
-                                <h3 className="font-primaria text-lg font-semibold text-azul-escuro mb-2">
+                                <h3 className="font-primaria text-lg font-semibold text-white mb-2">
                                     {passo.titulo}
                                 </h3>
 
                                 {/* Descrição */}
-                                <p className="text-texto-secundario text-sm">
+                                <p className="text-white/70 text-sm">
                                     {passo.descricao}
                                 </p>
                             </article>

@@ -37,7 +37,7 @@ const BENEFICIOS = [
 
 // Componente de ícone simples
 function BenefitIcon({ type }: { type: string }) {
-    const iconClass = "w-8 h-8 text-azul-principal";
+    const iconClass = "w-8 h-8 text-azul-destaque";
 
     switch (type) {
         case "gift":
@@ -71,14 +71,14 @@ function BenefitIcon({ type }: { type: string }) {
 
 export function BenefitsSection() {
     return (
-        <section className="section-padding">
+        <section className="bg-azul-institucional section-padding">
             <div className="container-brand">
                 {/* Título */}
                 <div className="text-center mb-12">
-                    <h2 className="font-primaria text-2xl md:text-3xl font-bold text-azul-escuro mb-4">
+                    <h2 className="font-primaria text-2xl md:text-3xl font-bold text-white mb-4">
                         Benefícios do Programa
                     </h2>
-                    <p className="text-texto-secundario max-w-2xl mx-auto">
+                    <p className="text-white/80 max-w-2xl mx-auto">
                         Mais do que recompensas, você faz parte de uma comunidade que valoriza
                         relacionamentos e crescimento mútuo.
                     </p>
@@ -89,19 +89,19 @@ export function BenefitsSection() {
                     {BENEFICIOS.map((beneficio) => (
                         <article
                             key={beneficio.id}
-                            className="flex gap-4 p-6 rounded-xl bg-fundo-claro border border-cinza-leve"
+                            className="flex gap-4 p-6 rounded-xl bg-white/5 border border-white/10"
                         >
                             {/* Ícone */}
-                            <div className="flex-shrink-0 w-14 h-14 flex items-center justify-center bg-white rounded-xl shadow-sm">
+                            <div className="flex-shrink-0 w-14 h-14 flex items-center justify-center bg-white/10 rounded-xl">
                                 <BenefitIcon type={beneficio.icone} />
                             </div>
 
                             {/* Conteúdo */}
                             <div>
-                                <h3 className="font-primaria text-lg font-semibold text-azul-escuro mb-2">
+                                <h3 className="font-primaria text-lg font-semibold text-white mb-2">
                                     {beneficio.titulo}
                                 </h3>
-                                <p className="text-texto-secundario text-sm">
+                                <p className="text-white/70 text-sm">
                                     {beneficio.descricao}
                                 </p>
                             </div>
