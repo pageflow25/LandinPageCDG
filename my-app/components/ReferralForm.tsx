@@ -82,7 +82,7 @@ export function ReferralForm() {
                 <div className="max-w-2xl mx-auto">
                     {/* Título */}
                     <div className="text-center mb-8">
-                        <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
+                        <h2 className="font-primaria text-2xl md:text-3xl font-bold text-white mb-4">
                             Faça sua indicação
                         </h2>
                         <p className="text-white/80">
@@ -98,7 +98,7 @@ export function ReferralForm() {
                     >
                         {/* Seção Afiliado */}
                         <fieldset className="mb-8">
-                            <legend className="text-lg font-semibold text-azul-escuro mb-4">
+                            <legend className="font-primaria text-lg font-semibold text-azul-escuro mb-4">
                                 Seus dados (quem indica)
                             </legend>
 
@@ -167,7 +167,7 @@ export function ReferralForm() {
 
                         {/* Seção Indicado */}
                         <fieldset className="mb-8">
-                            <legend className="text-lg font-semibold text-azul-escuro mb-4">
+                            <legend className="font-primaria text-lg font-semibold text-azul-escuro mb-4">
                                 Dados de quem você indica
                             </legend>
 
@@ -242,7 +242,7 @@ export function ReferralForm() {
                         <button
                             type="submit"
                             disabled={isSubmitting}
-                            className="w-full py-4 px-6 text-lg font-semibold text-white bg-azul-principal rounded-lg hover:bg-azul-institucional disabled:bg-cinza-leve disabled:cursor-not-allowed transition-colors duration-200 shadow-lg hover:shadow-xl"
+                            className="font-primaria w-full py-4 px-6 text-lg font-semibold text-white bg-azul-principal rounded-lg hover:bg-azul-institucional disabled:bg-cinza-leve disabled:cursor-not-allowed transition-colors duration-200 shadow-lg hover:shadow-xl"
                         >
                             {isSubmitting ? "Enviando..." : "Registrar indicação"}
                         </button>

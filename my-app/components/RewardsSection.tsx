@@ -37,11 +37,11 @@ const RECOMPENSAS = [
 
 export function RewardsSection() {
     return (
-        <section className="bg-white section-padding">
+        <section className="section-padding">
             <div className="container-brand">
                 {/* Título da seção */}
                 <div className="text-center mb-12">
-                    <h2 className="text-2xl md:text-3xl font-bold text-azul-escuro mb-4">
+                    <h2 className="font-primaria text-2xl md:text-3xl font-bold text-azul-escuro mb-4">
                         Recompensas do Programa
                     </h2>
                     <p className="text-texto-secundario max-w-2xl mx-auto">
@@ -65,7 +65,7 @@ export function RewardsSection() {
                         >
                             {/* Badge de destaque */}
                             {item.destaque && (
-                                <span className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 text-sm font-semibold bg-azul-destaque rounded-full">
+                                <span className="font-apoio absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 text-base font-semibold bg-azul-destaque rounded-full">
                                     Mais popular
                                 </span>
                             )}

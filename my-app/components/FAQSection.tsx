@@ -51,12 +51,12 @@ export function FAQSection() {
     }
 
     return (
-        <section className="bg-white section-padding">
+        <section className="section-padding">
             <div className="container-brand">
                 <div className="max-w-3xl mx-auto">
                     {/* Título */}
                     <div className="text-center mb-12">
-                        <h2 className="text-2xl md:text-3xl font-bold text-azul-escuro mb-4">
+                        <h2 className="font-primaria text-2xl md:text-3xl font-bold text-azul-escuro mb-4">
                             Perguntas frequentes
                         </h2>
                         <p className="text-texto-secundario">
@@ -78,7 +78,7 @@ export function FAQSection() {
                                     className="w-full px-6 py-4 flex items-center justify-between text-left bg-fundo-claro hover:bg-cinza-leve transition-colors"
                                     aria-expanded={openId === item.id}
                                 >
-                                    <span className="font-medium text-azul-escuro pr-4">
+                                    <span className="font-primaria font-medium text-azul-escuro pr-4">
                                         {item.pergunta}
                                     </span>
 

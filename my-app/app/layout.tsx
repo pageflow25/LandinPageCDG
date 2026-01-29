@@ -1,11 +1,33 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 
-// Fonte institucional - Inter para legibilidade e modernidade
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
+/**
+ * Tipografia do Manual de Marca - Educação ComVida
+ * 
+ * - Primária: Bricolage Grotesque (títulos, headlines, CTAs)
+ * - Secundária: Sora (corpo de texto, descrições)
+ * - Apoio: Caveat (destaques manuscritos, badges)
+ */
+
+// Fonte primária - Títulos e headlines
+const bricolage = localFont({
+  src: "../fonts/Bricolage_Grotesque/BricolageGrotesque-VariableFont_opsz,wdth,wght.ttf",
+  variable: "--font-bricolage",
+  display: "swap",
+});
+
+// Fonte secundária - Corpo de texto
+const sora = localFont({
+  src: "../fonts/Sora/Sora-VariableFont_wght.ttf",
+  variable: "--font-sora",
+  display: "swap",
+});
+
+// Fonte de apoio - Destaques manuscritos
+const caveat = localFont({
+  src: "../fonts/Caveat/Caveat-VariableFont_wght.ttf",
+  variable: "--font-caveat",
   display: "swap",
 });
 
@@ -20,6 +42,9 @@ export const metadata: Metadata = {
     "recompensas",
     "indicar clientes",
   ],
+  icons: {
+    icon: "https://ik.imagekit.io/pageflow/Educa%C3%A7%C3%A3o-ComVida/edcomvida2.svg",
+  },
   openGraph: {
     title: "Educação ComVida | Programa de Indicação",
     description: "Indique novos clientes e seja recompensado.",
@@ -34,7 +59,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR">
-      <body className={`${inter.variable} antialiased`}>{children}</body>
+      <body
+        className={`${bricolage.variable} ${sora.variable} ${caveat.variable} antialiased`}
+      >
+        {children}
+      </body>
     </html>
   );
 }

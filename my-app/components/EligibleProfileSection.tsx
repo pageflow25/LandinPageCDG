@@ -22,7 +22,7 @@ export function EligibleProfileSection() {
             <div className="container-brand">
                 <div className="max-w-3xl mx-auto">
                     {/* Título */}
-                    <h2 className="text-2xl md:text-3xl font-bold text-azul-escuro mb-4 text-center">
+                    <h2 className="font-primaria text-2xl md:text-3xl font-bold text-azul-escuro mb-4 text-center">
                         Quem pode ser indicado?
                     </h2>
 

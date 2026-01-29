@@ -71,11 +71,11 @@ function BenefitIcon({ type }: { type: string }) {
 
 export function BenefitsSection() {
     return (
-        <section className="bg-white section-padding">
+        <section className="section-padding">
             <div className="container-brand">
                 {/* Título */}
                 <div className="text-center mb-12">
-                    <h2 className="text-2xl md:text-3xl font-bold text-azul-escuro mb-4">
+                    <h2 className="font-primaria text-2xl md:text-3xl font-bold text-azul-escuro mb-4">
                         Benefícios do Programa
                     </h2>
                     <p className="text-texto-secundario max-w-2xl mx-auto">
@@ -98,7 +98,7 @@ export function BenefitsSection() {
 
                             {/* Conteúdo */}
                             <div>
-                                <h3 className="text-lg font-semibold text-azul-escuro mb-2">
+                                <h3 className="font-primaria text-lg font-semibold text-azul-escuro mb-2">
                                     {beneficio.titulo}
                                 </h3>
                                 <p className="text-texto-secundario text-sm">

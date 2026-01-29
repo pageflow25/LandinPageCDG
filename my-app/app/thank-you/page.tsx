@@ -51,7 +51,7 @@ export default function ThankYouPage() {
                 </div>
 
                 {/* Mensagem principal */}
-                <h1 className="text-2xl md:text-3xl font-bold text-azul-escuro mb-4">
+                <h1 className="font-primaria text-2xl md:text-3xl font-bold text-azul-escuro mb-4">
                     Indicação registrada com sucesso!
                 </h1>
 
@@ -62,7 +62,7 @@ export default function ThankYouPage() {
 
                 {/* Card informativo */}
                 <div className="bg-white p-6 rounded-xl border border-cinza-leve mb-8">
-                    <h2 className="font-semibold text-azul-escuro mb-3">
+                    <h2 className="font-primaria font-semibold text-azul-escuro mb-3">
                         Próximos passos
                     </h2>
                     <ul className="text-left text-texto-secundario text-sm space-y-2">

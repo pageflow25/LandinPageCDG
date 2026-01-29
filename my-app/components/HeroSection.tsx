@@ -30,7 +30,7 @@ export function HeroSection() {
                     </div>
 
                     {/* Headline */}
-                    <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-azul-escuro leading-tight mb-6">
+                    <h1 className="font-primaria text-3xl md:text-4xl lg:text-5xl font-bold text-azul-escuro leading-tight mb-6">
                         Educação que conecta.
                         <br />
                         <span className="text-azul-principal">Indicações que geram valor.</span>
@@ -45,7 +45,7 @@ export function HeroSection() {
                     {/* CTA Principal */}
                     <a
                         href="#formulario"
-                        className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-white bg-azul-principal rounded-lg hover:bg-azul-institucional transition-colors duration-200 shadow-lg hover:shadow-xl"
+                        className="font-primaria inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-white bg-azul-principal rounded-lg hover:bg-azul-institucional transition-colors duration-200 shadow-lg hover:shadow-xl"
                     >
                         Começar a indicar
                     </a>

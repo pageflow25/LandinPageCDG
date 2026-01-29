@@ -2,7 +2,7 @@
 
 /* =====================================================
    EDUCAÇÃO COMVIDA - Design System
-   Paleta institucional conforme manual da marca
+   Paleta e tipografia conforme manual da marca
    ===================================================== */
 
 :root {
@@ -11,20 +11,20 @@
   --azul-escuro: #0B284F;
   --azul-destaque: #18BDD5;
   --azul-institucional: #014F85;
-  
+
   /* Cores de fundo e neutros */
   --fundo-claro: #FBFBFB;
   --cinza-leve: #E6E7E9;
   --branco: #FFFFFF;
-  
+
   /* Cores de texto */
   --texto-primario: #0B284F;
   --texto-secundario: #4A5568;
-  
+
   /* Cores de estado */
   --sucesso: #10B981;
   --erro: #EF4444;
-  
+
   /* Tokens semânticos */
   --background: var(--fundo-claro);
   --foreground: var(--texto-primario);
@@ -33,7 +33,7 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  
+
   /* Brand colors para Tailwind */
   --color-azul-principal: var(--azul-principal);
   --color-azul-escuro: var(--azul-escuro);
@@ -41,8 +41,14 @@
   --color-azul-institucional: var(--azul-institucional);
   --color-fundo-claro: var(--fundo-claro);
   --color-cinza-leve: var(--cinza-leve);
-  
-  --font-sans: var(--font-inter);
+
+  /* Tipografia - Manual de Marca */
+  --font-primaria: var(--font-bricolage);
+  /* Títulos, headlines */
+  --font-secundaria: var(--font-sora);
+  /* Corpo de texto */
+  --font-apoio: var(--font-caveat);
+  /* Destaques manuscritos */
 }
 
 /* Reset base */
@@ -50,10 +56,11 @@
   box-sizing: border-box;
 }
 
+/* Corpo usa fonte secundária (Sora) como padrão */
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: 'Inter', system-ui, sans-serif;
+  font-family: var(--font-secundaria), system-ui, sans-serif;
   line-height: 1.6;
 }
 
@@ -68,7 +75,29 @@ html {
   outline-offset: 2px;
 }
 
-/* Utility classes customizadas */
+/* =====================================================
+   UTILITY CLASSES - Tipografia
+   ===================================================== */
+
+/* Fonte primária - para títulos */
+.font-primaria {
+  font-family: var(--font-primaria), system-ui, sans-serif;
+}
+
+/* Fonte secundária - para corpo */
+.font-secundaria {
+  font-family: var(--font-secundaria), system-ui, sans-serif;
+}
+
+/* Fonte de apoio - para destaques manuscritos */
+.font-apoio {
+  font-family: var(--font-apoio), cursive;
+}
+
+/* =====================================================
+   LAYOUT UTILITIES
+   ===================================================== */
+
 .section-padding {
   padding: 4rem 1rem;
 }
@@ -79,7 +108,6 @@ html {
   }
 }
 
-/* Container responsivo */
 .container-brand {
   max-width: 1200px;
   margin: 0 auto;
@@ -90,4 +118,19 @@ html {
   .container-brand {
     padding: 0 2rem;
   }
+}
+
+/* =====================================================
+   TEXTURAS
+   ===================================================== */
+
+/* Textura de linhas aplicada ao body para cobertura total */
+body {
+  background-color: #FBFBFB;
+  background-image: url('https://ik.imagekit.io/pageflow/Educa%C3%A7%C3%A3o-ComVida/linha4.svg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center center;
+  background-size: cover;
+  min-height: 100vh;
 }

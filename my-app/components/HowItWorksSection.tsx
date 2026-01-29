@@ -31,7 +31,7 @@ export function HowItWorksSection() {
             <div className="container-brand">
                 {/* Título */}
                 <div className="text-center mb-12">
-                    <h2 className="text-2xl md:text-3xl font-bold text-azul-escuro mb-4">
+                    <h2 className="font-primaria text-2xl md:text-3xl font-bold text-azul-escuro mb-4">
                         Como funciona
                     </h2>
                     <p className="text-texto-secundario">
@@ -58,7 +58,7 @@ export function HowItWorksSection() {
                                 </div>
 
                                 {/* Título */}
-                                <h3 className="text-lg font-semibold text-azul-escuro mb-2">
+                                <h3 className="font-primaria text-lg font-semibold text-azul-escuro mb-2">
                                     {passo.titulo}
                                 </h3>
 
