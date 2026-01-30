@@ -9,7 +9,7 @@
 
 // URL placeholder para logo principal
 // TODO: Substituir pela URL real da logo Educação ComVida
-export const LOGO_PRINCIPAL = "https://ik.imagekit.io/pageflow/Educa%C3%A7%C3%A3o-ComVida/edcomvida1.svg";
+export const LOGO_PRINCIPAL = "https://ik.imagekit.io/pageflow/Educa%C3%A7%C3%A3o-ComVida/edcomvida_branco.svg";
 
 // URL placeholder para logo secundária (versão clara)
 // TODO: Substituir pela URL real da logo secundária

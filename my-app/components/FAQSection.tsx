@@ -111,7 +111,7 @@ export function FAQSection() {
                             href={REGULAMENTO_URL}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 text-azul-destaque hover:text-white font-medium transition-colors"
+                            className="inline-flex items-center gap-2 text-azul-escuro hover:text-white font-medium transition-colors"
                         >
                             Ver regulamento completo
                             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

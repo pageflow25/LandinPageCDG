@@ -69,16 +69,16 @@ export default function ThankYouPage() {
                         Próximos passos
                     </h2>
                     <ul className="text-left text-texto-secundario text-sm space-y-2">
-                        <li className="flex items-start gap-2 text-azul-escuro">
-                            <span className="text-azul-principal font-bold">1.</span>
+                        <li className="flex items-start gap-2 text-azul-escuro font-medium">
+                            <span className="text-azul-principal font-extrabold">1.</span>
                             Nossa equipe entrará em contato com seu indicado
                         </li>
-                        <li className="flex items-start gap-2 text-azul-escuro">
-                            <span className="text-azul-principal font-bold">2.</span>
+                        <li className="flex items-start gap-2 text-azul-escuro font-medium">
+                            <span className="text-azul-principal font-extrabold">2.</span>
                             Você receberá um e-mail quando houver atualizações
                         </li>
-                        <li className="flex items-start gap-2 text-azul-escuro">
-                            <span className="text-azul-principal font-bold">3.</span>
+                        <li className="flex items-start gap-2 text-azul-escuro font-medium">
+                            <span className="text-azul-principal font-extrabold">3.</span>
                             Sua recompensa é liberada após a primeira compra
                         </li>
                     </ul>
@@ -87,7 +87,7 @@ export default function ThankYouPage() {
                 {/* Botão voltar */}
                 <Link
                     href="/"
-                    className="inline-flex items-center gap-2 px-6 py-3 bg-white text-azul-principal font-medium rounded-md hover:bg-cinza-leve transition-colors"
+                    className="inline-flex items-center gap-2 px-6 py-3 bg-white text-azul-escuro font-medium rounded-md hover:bg-cinza-leve transition-colors"
                 >
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />

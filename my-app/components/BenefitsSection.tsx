@@ -37,7 +37,7 @@ const BENEFICIOS = [
 
 // Componente de ícone simples
 function BenefitIcon({ type }: { type: string }) {
-    const iconClass = "w-8 h-8 text-azul-destaque";
+    const iconClass = "w-8 h-8 text-azul-institucional";
 
     switch (type) {
         case "gift":
