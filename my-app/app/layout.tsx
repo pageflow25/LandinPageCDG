@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import { VantaBackground } from "@/components/VantaBackground";
 
 /**
  * Tipografia do Manual de Marca - Educação ComVida
@@ -60,9 +61,12 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <body
-        className={`${bricolage.variable} ${sora.variable} ${caveat.variable} antialiased`}
+        className={`${bricolage.variable} ${sora.variable} ${caveat.variable} antialiased relative`}
       >
-        {children}
+        <VantaBackground />
+        <div className="relative z-10">
+          {children}
+        </div>
       </body>
     </html>
   );

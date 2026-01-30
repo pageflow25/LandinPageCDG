@@ -37,7 +37,7 @@ const RECOMPENSAS = [
 
 export function RewardsSection() {
     return (
-        <section className="bg-azul-institucional section-padding">
+        <section className="section-padding relative">
             <div className="container-brand">
                 {/* Título da seção */}
                 <div className="text-center mb-12">
@@ -59,7 +59,7 @@ export function RewardsSection() {
                 relative p-6 rounded-xl border-2 transition-transform hover:scale-105
                 ${item.destaque
                                     ? "bg-azul-principal text-white border-azul-principal shadow-xl"
-                                    : "bg-white/10 border-white/20 hover:border-azul-destaque"
+                                    : "bg-white/20 backdrop-blur-sm border-white/30 hover:border-azul-destaque"
                                 }
               `}
                         >

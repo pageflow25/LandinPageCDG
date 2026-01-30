@@ -23,7 +23,7 @@ export function HeroSection() {
                             width={200}
                             height={60}
                             priority
-                            className="h-auto"
+                            className="drop-shadow-[5px_5px_15px_rgba(24,189,213,0.3)]"
                         />
                     </div>
 
@@ -43,7 +43,7 @@ export function HeroSection() {
                     {/* CTA Principal */}
                     <a
                         href="#formulario"
-                        className="font-primaria inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-white bg-azul-principal rounded-lg hover:bg-azul-institucional transition-colors duration-200 shadow-lg hover:shadow-xl"
+                        className="font-primaria inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-white bg-azul-principal rounded-lg mb-12 md:mb-16 hover:bg-azul-institucional transition-colors duration-200 shadow-lg hover:shadow-xl"
                     >
                         Começar a indicar
                     </a>

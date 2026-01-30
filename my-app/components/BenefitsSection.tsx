@@ -71,7 +71,7 @@ function BenefitIcon({ type }: { type: string }) {
 
 export function BenefitsSection() {
     return (
-        <section className="bg-azul-institucional section-padding">
+        <section className="section-padding relative">
             <div className="container-brand">
                 {/* Título */}
                 <div className="text-center mb-12">
@@ -89,10 +89,10 @@ export function BenefitsSection() {
                     {BENEFICIOS.map((beneficio) => (
                         <article
                             key={beneficio.id}
-                            className="flex gap-4 p-6 rounded-xl bg-white/5 border border-white/10"
+                            className="flex gap-4 p-6 rounded-xl bg-white/15 backdrop-blur-sm border border-white/20"
                         >
                             {/* Ícone */}
-                            <div className="flex-shrink-0 w-14 h-14 flex items-center justify-center bg-white/10 rounded-xl">
+                            <div className="shrink-0 w-14 h-14 flex items-center justify-center bg-white/20 rounded-xl">
                                 <BenefitIcon type={beneficio.icone} />
                             </div>
 

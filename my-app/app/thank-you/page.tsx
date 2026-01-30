@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { LOGO_PRINCIPAL } from "@/lib/config";
 import type { Metadata } from "next";
+import { VantaBackground } from "@/components/VantaBackground";
 
 /**
  * Thank You Page - Página de agradecimento
@@ -20,7 +21,9 @@ export const metadata: Metadata = {
 
 export default function ThankYouPage() {
     return (
-        <main className="min-h-screen bg-fundo-claro flex items-center justify-center p-4">
+        <>
+            <VantaBackground />
+            <main className="min-h-screen text-white flex items-center justify-center p-4 relative z-10">
             <div className="max-w-lg w-full text-center">
                 {/* Logo */}
                 <div className="mb-8">
@@ -51,11 +54,11 @@ export default function ThankYouPage() {
                 </div>
 
                 {/* Mensagem principal */}
-                <h1 className="font-primaria text-2xl md:text-3xl font-bold text-azul-escuro mb-4">
+                <h1 className="font-primaria text-2xl md:text-3xl font-bold text-white mb-4">
                     Indicação registrada com sucesso!
                 </h1>
 
-                <p className="text-texto-secundario mb-8 max-w-md mx-auto">
+                <p className="text-white/90 mb-8 max-w-md mx-auto">
                     Obrigado por fazer parte do programa Educação ComVida.
                     Entraremos em contato com seu indicado e você receberá atualizações por e-mail.
                 </p>
@@ -66,15 +69,15 @@ export default function ThankYouPage() {
                         Próximos passos
                     </h2>
                     <ul className="text-left text-texto-secundario text-sm space-y-2">
-                        <li className="flex items-start gap-2">
+                        <li className="flex items-start gap-2 text-azul-escuro">
                             <span className="text-azul-principal font-bold">1.</span>
                             Nossa equipe entrará em contato com seu indicado
                         </li>
-                        <li className="flex items-start gap-2">
+                        <li className="flex items-start gap-2 text-azul-escuro">
                             <span className="text-azul-principal font-bold">2.</span>
                             Você receberá um e-mail quando houver atualizações
                         </li>
-                        <li className="flex items-start gap-2">
+                        <li className="flex items-start gap-2 text-azul-escuro">
                             <span className="text-azul-principal font-bold">3.</span>
                             Sua recompensa é liberada após a primeira compra
                         </li>
@@ -84,7 +87,7 @@ export default function ThankYouPage() {
                 {/* Botão voltar */}
                 <Link
                     href="/"
-                    className="inline-flex items-center gap-2 px-6 py-3 text-azul-principal font-medium hover:text-azul-institucional transition-colors"
+                    className="inline-flex items-center gap-2 px-6 py-3 bg-white text-azul-principal font-medium rounded-md hover:bg-cinza-leve transition-colors"
                 >
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
@@ -93,10 +96,11 @@ export default function ThankYouPage() {
                 </Link>
 
                 {/* Rodapé institucional */}
-                <p className="mt-12 text-xs text-texto-secundario/70">
+                <p className="mt-12 text-xs text-white/70">
                     Educação ComVida — Programa oficial de indicação da Casa da Gráfica
                 </p>
             </div>
         </main>
+        </>
     );
 }

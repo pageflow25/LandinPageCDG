@@ -51,7 +51,7 @@ export function FAQSection() {
     }
 
     return (
-        <section className="bg-azul-institucional section-padding">
+        <section className="section-padding relative">
             <div className="container-brand">
                 <div className="max-w-3xl mx-auto">
                     {/* Título */}
@@ -69,13 +69,13 @@ export function FAQSection() {
                         {PERGUNTAS.map((item) => (
                             <div
                                 key={item.id}
-                                className="border border-white/10 rounded-lg overflow-hidden"
+                                className="border border-white/20 rounded-lg overflow-hidden"
                             >
                                 {/* Pergunta (botão) */}
                                 <button
                                     type="button"
                                     onClick={() => toggleQuestion(item.id)}
-                                    className="w-full px-6 py-4 flex items-center justify-between text-left bg-white/5 hover:bg-white/10 transition-colors"
+                                    className="w-full px-6 py-4 flex items-center justify-between text-left bg-white/15 backdrop-blur-sm hover:bg-white/25 transition-colors"
                                     aria-expanded={openId === item.id}
                                 >
                                     <span className="font-primaria font-medium text-white pr-4">
@@ -95,7 +95,7 @@ export function FAQSection() {
 
                                 {/* Resposta */}
                                 {openId === item.id && (
-                                    <div className="px-6 py-4 bg-white/5 border-t border-white/10">
+                                    <div className="px-6 py-4 bg-white/10 backdrop-blur-sm border-t border-white/20">
                                         <p className="text-white/80">
                                             {item.resposta}
                                         </p>
