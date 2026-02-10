@@ -119,3 +119,28 @@ html {
     padding: 0 2rem;
   }
 }
+
+/* =====================================================
+   BACKGROUND PATTERN - Logo SVG overlay
+   Usado nas seções com fundo azul escuro
+   ===================================================== */
+
+.bg-pattern-logo {
+  position: relative;
+}
+
+.bg-pattern-logo::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('https://ik.imagekit.io/pageflow/Educa%C3%A7%C3%A3o-ComVida/Fundo%20Logo.svg?updatedAt=1770143569581');
+  background-repeat: repeat;
+  background-size: cover;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.bg-pattern-logo>* {
+  position: relative;
+  z-index: 1;
+}

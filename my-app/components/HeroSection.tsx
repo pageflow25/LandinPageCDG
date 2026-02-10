@@ -11,7 +11,7 @@ import { LOGO_PRINCIPAL } from "@/lib/config";
  */
 export function HeroSection() {
     return (
-        <section className="bg-azul-escuro">
+        <section className="bg-azul-escuro bg-pattern-logo">
 
             <div className="container-brand section-padding">
                 <div className="flex flex-col items-center text-center max-w-3xl mx-auto">

@@ -27,7 +27,7 @@ const PASSOS = [
 
 export function HowItWorksSection() {
     return (
-        <section className="bg-azul-escuro section-padding">
+        <section className="bg-azul-escuro section-padding bg-pattern-logo">
             <div className="container-brand">
                 {/* Título */}
                 <div className="text-center mb-12">

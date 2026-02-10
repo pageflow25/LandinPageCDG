@@ -18,7 +18,7 @@ const PERFIL_IDEAL = [
 
 export function EligibleProfileSection() {
     return (
-        <section className="bg-azul-escuro section-padding">
+        <section className="bg-azul-escuro section-padding bg-pattern-logo">
             <div className="container-brand">
                 <div className="max-w-3xl mx-auto">
                     {/* Título */}

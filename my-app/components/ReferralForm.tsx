@@ -77,7 +77,7 @@ export function ReferralForm() {
     }
 
     return (
-        <section id="formulario" className="bg-azul-escuro section-padding">
+        <section id="formulario" className="bg-azul-escuro section-padding bg-pattern-logo">
             <div className="container-brand">
                 <div className="max-w-2xl mx-auto">
                     {/* Título */}
