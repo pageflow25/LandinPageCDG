@@ -11,7 +11,7 @@ import { LOGO_PRINCIPAL } from "@/lib/config";
  */
 export function HeroSection() {
     return (
-        <section className="bg-azul-escuro bg-pattern-logo">
+        <section className="bg-azul-escuro bg-pattern-logo relative overflow-hidden">
 
             <div className="container-brand section-padding">
                 <div className="flex flex-col items-center text-center max-w-3xl mx-auto">
@@ -48,6 +48,18 @@ export function HeroSection() {
                         Começar a indicar
                     </a>
                 </div>
+            </div>
+
+            {/* Imagem decorativa — canto direito */}
+            <div className="hidden md:block !absolute bottom-0 right-4 !z-0">
+                <Image
+                    src="https://ik.imagekit.io/pageflow/Educa%C3%A7%C3%A3o-ComVida/mo%C3%A7a%20capa.png"
+                    alt="Pessoa indicando no programa Educação ComVida"
+                    width={350}
+                    height={450}
+                    className="object-contain drop-shadow-[0_0_15px_rgba(0,0,0,0.6)]"
+                    priority
+                />
             </div>
         </section>
     );

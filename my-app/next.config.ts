@@ -9,11 +9,10 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "placehold.co",
       },
-      // Adicione abaixo os domínios reais das imagens quando disponíveis
-      // {
-      //   protocol: "https",
-      //   hostname: "seu-dominio-de-imagens.com",
-      // },
+      {
+        protocol: "https",
+        hostname: "ik.imagekit.io",
+      },
     ],
   },
 };
