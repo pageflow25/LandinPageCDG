@@ -5,36 +5,31 @@ import { useRouter } from "next/navigation";
 
 /**
  * ReferralForm - Formulário de indicação
- * 
+ *
  * Responsabilidades:
- * - Coletar dados do afiliado e indicado
+ * - Coletar nome e telefone do afiliado e indicado
+ * - Montar payload no formato esperado pela API
  * - Submeter para API route
  * - Redirecionar para página de agradecimento
- * 
+ *
  * Client Component necessário para:
  * - State do formulário
  * - Eventos de submit
  * - Navegação programática
  */
 
-// Estado inicial do formulário
+// Estado do formulário — apenas nome e telefone
 interface FormData {
-    // Dados do Afiliado (quem indica)
     nomeAfiliado: string;
-    emailAfiliado: string;
     telefoneAfiliado: string;
-    // Dados do Indicado (quem é indicado)
     nomeIndicado: string;
-    emailIndicado: string;
     telefoneIndicado: string;
 }
 
 const INITIAL_FORM_DATA: FormData = {
     nomeAfiliado: "",
-    emailAfiliado: "",
     telefoneAfiliado: "",
     nomeIndicado: "",
-    emailIndicado: "",
     telefoneIndicado: "",
 };
 
@@ -51,21 +46,36 @@ export function ReferralForm() {
         setError(null);
     }
 
-    // Handler para submit
+    // Handler para submit — monta payload no formato da API
     async function handleSubmit(e: FormEvent<HTMLFormElement>) {
         e.preventDefault();
         setIsSubmitting(true);
         setError(null);
 
         try {
+            const payload = {
+                afiliado: {
+                    nome: formData.nomeAfiliado,
+                    telefone: formData.telefoneAfiliado,
+                },
+                indicado: {
+                    nome: formData.nomeIndicado,
+                    telefone: formData.telefoneIndicado,
+                },
+            };
+
             const response = await fetch("/api/indicacao", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(formData),
+                body: JSON.stringify(payload),
             });
 
             if (!response.ok) {
-                throw new Error("Erro ao registrar indicação. Tente novamente.");
+                const data = await response.json().catch(() => null);
+                throw new Error(
+                    data?.error ??
+                    "Erro ao registrar indicação. Tente novamente.",
+                );
             }
 
             // Redirect para página de agradecimento
@@ -124,25 +134,6 @@ export function ReferralForm() {
 
                                 <div>
                                     <label
-                                        htmlFor="emailAfiliado"
-                                        className="block text-sm font-medium text-texto-secundario mb-1"
-                                    >
-                                        E-mail
-                                    </label>
-                                    <input
-                                        type="email"
-                                        id="emailAfiliado"
-                                        name="emailAfiliado"
-                                        value={formData.emailAfiliado}
-                                        onChange={handleChange}
-                                        required
-                                        className="w-full px-4 py-3 rounded-lg border border-cinza-leve focus:border-azul-principal focus:ring-2 focus:ring-azul-principal/20 outline-none transition-all"
-                                        placeholder="seu@email.com"
-                                    />
-                                </div>
-
-                                <div>
-                                    <label
                                         htmlFor="telefoneAfiliado"
                                         className="block text-sm font-medium text-texto-secundario mb-1"
                                     >
@@ -188,25 +179,6 @@ export function ReferralForm() {
                                         required
                                         className="w-full px-4 py-3 rounded-lg border border-cinza-leve focus:border-azul-principal focus:ring-2 focus:ring-azul-principal/20 outline-none transition-all"
                                         placeholder="Nome do indicado"
-                                    />
-                                </div>
-
-                                <div>
-                                    <label
-                                        htmlFor="emailIndicado"
-                                        className="block text-sm font-medium text-texto-secundario mb-1"
-                                    >
-                                        E-mail
-                                    </label>
-                                    <input
-                                        type="email"
-                                        id="emailIndicado"
-                                        name="emailIndicado"
-                                        value={formData.emailIndicado}
-                                        onChange={handleChange}
-                                        required
-                                        className="w-full px-4 py-3 rounded-lg border border-cinza-leve focus:border-azul-principal focus:ring-2 focus:ring-azul-principal/20 outline-none transition-all"
-                                        placeholder="email@indicado.com"
                                     />
                                 </div>
 
