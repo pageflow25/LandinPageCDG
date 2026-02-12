@@ -26,7 +26,7 @@
   --erro: #EF4444;
 
   /* Tokens semânticos */
-  --background: var(--fundo-claro);
+  --background: var(--azul-institucional);
   --foreground: var(--texto-primario);
 }
 

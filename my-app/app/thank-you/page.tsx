@@ -2,7 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { LOGO_PRINCIPAL } from "@/lib/config";
 import type { Metadata } from "next";
-import { VantaBackground } from "@/components/VantaBackground";
 
 /**
  * Thank You Page - Página de agradecimento
@@ -21,9 +20,7 @@ export const metadata: Metadata = {
 
 export default function ThankYouPage() {
     return (
-        <>
-            <VantaBackground />
-            <main className="min-h-screen text-white flex items-center justify-center p-4 relative z-10">
+        <main className="min-h-screen text-white flex items-center justify-center p-4">
             <div className="max-w-lg w-full text-center">
                 {/* Logo */}
                 <div className="mb-8">
@@ -101,6 +98,5 @@ export default function ThankYouPage() {
                 </p>
             </div>
         </main>
-        </>
     );
 }
