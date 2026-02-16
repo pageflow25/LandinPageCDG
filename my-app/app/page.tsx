@@ -1,4 +1,5 @@
 import { HeroSection } from "@/components/HeroSection";
+import { ProjectSection } from "@/components/ProjectSection";
 import { RewardsSection } from "@/components/RewardsSection";
 import { EligibleProfileSection } from "@/components/EligibleProfileSection";
 import { BenefitsSection } from "@/components/BenefitsSection";
@@ -12,18 +13,20 @@ import { Footer } from "@/components/Footer";
  * 
  * Ordem das seções conforme especificação:
  * 1. Hero (Convite)
- * 2. Recompensas
- * 3. Quem pode ser indicado
- * 4. Benefícios
- * 5. Formulário de indicação
- * 6. Como funciona
- * 7. FAQ
- * 8. Footer
+ * 2. O que é o projeto?
+ * 3. Recompensas
+ * 4. Quem pode ser indicado
+ * 5. Benefícios
+ * 6. Formulário de indicação
+ * 7. Como funciona
+ * 8. FAQ
+ * 9. Footer
  */
 export default function Home() {
   return (
     <main>
       <HeroSection />
+      <ProjectSection />
       <RewardsSection />
       <EligibleProfileSection />
       <BenefitsSection />

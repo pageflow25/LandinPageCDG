@@ -1,37 +1,47 @@
+import Image from "next/image";
+
 /**
- * RewardsSection - Seção de recompensas
- * 
+ * RewardsSection - Seção de recompensas do programa
+ *
  * Responsabilidades:
- * - Apresentar as recompensas disponíveis
- * - Ordem: Recompensa → Número de indicações
- * - Destaque visual para recompensa principal
+ * - Apresentar as recompensas visuais por indicação
+ * - Exibir imagem do produto, título e descrição
  */
 
-// Dados das recompensas do programa
+// Dados das recompensas com imagens do ImageKit
 const RECOMPENSAS = [
     {
         id: 1,
-        recompensa: "R$ 50 em crédito",
-        indicacoes: 1,
-        destaque: false,
+        titulo: "1ª Indicação",
+        descricao: "Ganhe uma Alexa!",
+        imagemUrl:
+            "https://ik.imagekit.io/pageflow/Educa%C3%A7%C3%A3o-ComVida/alexa.png?updatedAt=1770940158395",
+        imagemAlt: "Amazon Alexa Echo Dot",
     },
     {
         id: 2,
-        recompensa: "R$ 150 em crédito",
-        indicacoes: 3,
-        destaque: false,
+        titulo: "2ª Indicação",
+        descricao: "Desconto nas próximas compras!",
+        subtexto: "*válido por horários Prime",
+        imagemUrl:
+            "https://ik.imagekit.io/pageflow/Educa%C3%A7%C3%A3o-ComVida/Cupom%20de%20Desconto.png?updatedAt=1770940158353",
+        imagemAlt: "Cupom de desconto Casa da Gráfica",
     },
     {
         id: 3,
-        recompensa: "R$ 300 em crédito + Brinde exclusivo",
-        indicacoes: 5,
-        destaque: true, // Recompensa principal
+        titulo: "3ª Indicação",
+        descricao: "Ganhe um Tablet!",
+        imagemUrl:
+            "https://ik.imagekit.io/pageflow/Educa%C3%A7%C3%A3o-ComVida/Tablet.png?updatedAt=1770940158259",
+        imagemAlt: "Tablet Samsung",
     },
     {
         id: 4,
-        recompensa: "R$ 750 em crédito + Kit Premium",
-        indicacoes: 10,
-        destaque: false,
+        titulo: "4ª Indicação",
+        descricao: "Ganhe um Smartwatch!",
+        imagemUrl:
+            "https://ik.imagekit.io/pageflow/Educa%C3%A7%C3%A3o-ComVida/smartwatch.png?updatedAt=1770940158347",
+        imagemAlt: "Smartwatch",
     },
 ];
 
@@ -50,38 +60,40 @@ export function RewardsSection() {
                     </p>
                 </div>
 
-                {/* Grid de recompensas */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                {/* Grid de recompensas com imagens */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                     {RECOMPENSAS.map((item) => (
                         <article
                             key={item.id}
-                            className={`
-                relative p-6 rounded-xl border-2 transition-transform hover:scale-105
-                ${item.destaque
-                                    ? "bg-azul-principal text-white border-azul-principal shadow-xl"
-                                    : "bg-white/20 backdrop-blur-sm border-white/30 hover:border-azul-destaque"
-                                }
-              `}
+                            className="bg-white/10 backdrop-blur-sm rounded-xl p-3 text-center flex flex-col items-center border border-white/20 transition-transform hover:scale-105"
                         >
-                            {/* Badge de destaque */}
-                            {item.destaque && (
-                                <span className="font-apoio absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 text-base font-semibold bg-azul-destaque rounded-full">
-                                    Mais popular
-                                </span>
+                            {/* Título da indicação */}
+                            <p className="font-primaria text-base font-bold text-white mb-0.5">
+                                {item.titulo}
+                            </p>
+
+                            {/* Descrição da recompensa */}
+                            <p className="text-white/90 font-semibold text-xs mb-0.5">
+                                {item.descricao}
+                            </p>
+
+                            {/* Subtexto opcional */}
+                            {"subtexto" in item && item.subtexto && (
+                                <p className="text-xs text-white/50 mb-2">
+                                    {item.subtexto}
+                                </p>
                             )}
 
-                            {/* Recompensa primeiro (conforme especificação) */}
-                            <p className={`text-xl font-bold mb-3 ${item.destaque ? "text-white" : "text-white"}`}>
-                                {item.recompensa}
-                            </p>
-
-                            {/* Número de indicações */}
-                            <p className={`text-sm ${item.destaque ? "text-white/90" : "text-white/70"}`}>
-                                {item.indicacoes === 1
-                                    ? "1 indicação"
-                                    : `${item.indicacoes} indicações`
-                                }
-                            </p>
+                            {/* Imagem do produto */}
+                            <div className="relative w-full aspect-[3/2] mt-auto">
+                                <Image
+                                    src={item.imagemUrl}
+                                    alt={item.imagemAlt}
+                                    fill
+                                    className="object-contain"
+                                    sizes="(max-width: 640px) 80vw, (max-width: 1024px) 40vw, 22vw"
+                                />
+                            </div>
                         </article>
                     ))}
                 </div>
