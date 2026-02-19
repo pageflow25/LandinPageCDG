@@ -47,7 +47,7 @@ const RECOMPENSAS = [
 
 export function RewardsSection() {
     return (
-        <section className="section-padding relative">
+        <section className="section-padding pt-5! md:pt-6! relative">
             <div className="container-brand">
                 {/* Título da seção */}
                 <div className="text-center mb-12">
@@ -85,7 +85,7 @@ export function RewardsSection() {
                             )}
 
                             {/* Imagem do produto */}
-                            <div className="relative w-full aspect-[3/2] mt-auto">
+                            <div className="relative w-full aspect-3/2 mt-auto">
                                 <Image
                                     src={item.imagemUrl}
                                     alt={item.imagemAlt}

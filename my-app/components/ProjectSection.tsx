@@ -16,7 +16,7 @@ const IMAGEM_CLIENTE_2 =
 
 export function ProjectSection() {
     return (
-        <section className="section-padding !pb-4 md:!pb-6 relative">
+        <section className="section-padding pt-8! md:pt-10! pb-3! md:pb-0! relative">
             <div className="container-brand">
                 <div className="flex flex-col lg:flex-row gap-10 lg:gap-16 items-start">
                     {/* Lado esquerdo — Texto */}
