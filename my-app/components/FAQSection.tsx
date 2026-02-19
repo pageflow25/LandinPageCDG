@@ -24,7 +24,7 @@ const PERGUNTAS = [
     {
         id: 2,
         pergunta: "Quando recebo minha recompensa?",
-        resposta: "Você recebe a recompensa assim que a pessoa indicada realiza a primeira compra e o pagamento é confirmado. O crédito é adicionado automaticamente à sua conta.",
+        resposta: "Você recebe a recompensa assim que a pessoa indicada realiza a primeira compra e o pagamento é confirmado. O consultor comercial, que te atende, entrará em contato e liberará o prêmio para você.",
     },
     {
         id: 3,
@@ -34,7 +34,7 @@ const PERGUNTAS = [
     {
         id: 4,
         pergunta: "O que acontece se meu indicado não comprar?",
-        resposta: "Nenhuma recompensa é gerada se o indicado não se tornar cliente. Mas não se preocupe, você pode continuar indicando outras pessoas.",
+        resposta: "Se o seu indicado não realizar compra com a CDF, nenhuma recompensa é gerada para você. Mas, não se preocupe, você pode continuar indicando outras pessoas.",
     },
     {
         id: 5,
@@ -111,7 +111,7 @@ export function FAQSection() {
                             href={REGULAMENTO_URL}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 text-azul-escuro hover:text-white font-medium transition-colors"
+                            className="inline-flex items-center gap-2 rounded-full bg-azul-destaque px-4 py-2 text-xs font-semibold text-black shadow-md transition-colors hover:bg-azul-principal"
                         >
                             Ver regulamento completo
                             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

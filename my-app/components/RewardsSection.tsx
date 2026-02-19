@@ -12,33 +12,33 @@ import Image from "next/image";
 const RECOMPENSAS = [
     {
         id: 1,
-        titulo: "1ª Indicação",
-        descricao: "Ganhe uma Alexa!",
+        titulo: "1º Indicação",
+        descricao: "Ganhe uma Alexa",
         imagemUrl:
             "https://ik.imagekit.io/pageflow/Educa%C3%A7%C3%A3o-ComVida/alexa.png?updatedAt=1770940158395",
         imagemAlt: "Amazon Alexa Echo Dot",
     },
     {
         id: 2,
-        titulo: "2ª Indicação",
-        descricao: "Desconto nas próximas compras!",
-        subtexto: "*válido por horários Prime",
+        titulo: "2º Indicação",
+        descricao: "Ganhe Desconto nas próximas compras",
+        subtexto: "CNPJ / Pix PF",
         imagemUrl:
             "https://ik.imagekit.io/pageflow/Educa%C3%A7%C3%A3o-ComVida/Cupom%20de%20Desconto.png?updatedAt=1770940158353",
         imagemAlt: "Cupom de desconto Casa da Gráfica",
     },
     {
         id: 3,
-        titulo: "3ª Indicação",
-        descricao: "Ganhe um Tablet!",
+        titulo: "3º Indicação",
+        descricao: "Ganhe um Tablet",
         imagemUrl:
             "https://ik.imagekit.io/pageflow/Educa%C3%A7%C3%A3o-ComVida/Tablet.png?updatedAt=1770940158259",
         imagemAlt: "Tablet Samsung",
     },
     {
         id: 4,
-        titulo: "4ª Indicação",
-        descricao: "Ganhe um Smartwatch!",
+        titulo: "4º Indicação",
+        descricao: "Ganhe um Smart Watch",
         imagemUrl:
             "https://ik.imagekit.io/pageflow/Educa%C3%A7%C3%A3o-ComVida/smartwatch.png?updatedAt=1770940158347",
         imagemAlt: "Smartwatch",
@@ -55,8 +55,10 @@ export function RewardsSection() {
                         Recompensas do Programa
                     </h2>
                     <p className="text-white/80 max-w-2xl mx-auto">
-                        A cada indicação que se torna cliente, você recebe recompensas.
-                        Quanto mais indicações, maiores os benefícios.
+                        No Educação ComVida, sua parceria gera frutos. A cada novo cliente que
+                        chega por sua indicação, você recebe recompensas exclusivas. Quanto mais
+                        você compartilha sua experiência e ajuda a expandir nossa comunidade,
+                        maiores são os benefícios acumulados.
                     </p>
                 </div>
 

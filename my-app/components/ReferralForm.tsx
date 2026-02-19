@@ -20,7 +20,7 @@ import Image from "next/image";
  */
 
 const IMAGEM_INSCRICAO =
-    "https://ik.imagekit.io/pageflow/Educa%C3%A7%C3%A3o-ComVida/Mo%C3%A7a%20Inscri%C3%A7%C3%A3o.png";
+    "https://ik.imagekit.io/pageflow/Educa%C3%A7%C3%A3o-ComVida/Mo%C3%A7a%20com%20o%20Borrado.png";
 
 // Estado do formulário
 interface FormData {
@@ -97,22 +97,14 @@ export function ReferralForm() {
         <section id="formulario" className="bg-azul-escuro section-padding bg-pattern-logo overflow-hidden relative">
             <div className="container-brand">
                 {/* Imagem absoluta — flutua à esquerda, sem disputar espaço com o form */}
-                <div className="hidden md:block absolute left-0 lg:-left-16 -bottom-10 z-30 w-[60%] lg:w-[68%] xl:w-[72%] pointer-events-none">
+                <div className="hidden md:block absolute -left-16 lg:-left-32 xl:-left-40 top-52 z-30 w-[68%] lg:w-[76%] xl:w-[80%] pointer-events-none">
                     <Image
                         src={IMAGEM_INSCRICAO}
                         alt="Mulher apontando para o formulário de indicação"
                         width={800}
                         height={1200}
-                        className="w-full h-auto"
+                        className="w-full h-auto relative"
                         priority
-                    />
-                    {/* Fade na base */}
-                    <div
-                        className="absolute inset-x-0 bottom-0 h-16 pointer-events-none"
-                        style={{
-                            background:
-                                "linear-gradient(to top, var(--azul-escuro) 0%, transparent 100%)",
-                        }}
                     />
                 </div>
 

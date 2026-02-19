@@ -37,7 +37,7 @@ export function HeroSection() {
                     {/* Subheadline */}
                     <p className="text-lg md:text-xl text-white/90 mb-8 max-w-2xl">
                         Seja um embaixador da Casa da Gráfica. Indique novos clientes e receba
-                        recompensas a cada indicação que se torna cliente.
+                        recompensas a cada indicação que se tornar cliente.
                     </p>
 
                     {/* CTA Principal */}

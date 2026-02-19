@@ -8,12 +8,10 @@
 
 // Critérios do perfil ideal
 const PERFIL_IDEAL = [
-    "Empresas que precisam de materiais gráficos (cartões, banners, panfletos)",
-    "Empreendedores que estão abrindo um negócio",
-    "Profissionais de marketing e design",
-    "Escolas e instituições educacionais",
-    "Igrejas, ONGs e associações",
-    "Comerciantes locais que precisam de comunicação visual",
+    "Escolas e Instituições de Ensino: Diretores e Gestores que buscam transformar conteúdo em experiências físicas de alto padrão para seus alunos.",
+    "Editoras: Parceiros que precisam de escala, padronização e agilidade na produção de materiais didáticos e apostilas.",
+    "Infoprodutores e Cursos Livres: Empreendedores da educação que desejam valorizar sua marca através de materiais impressos que geram autoridade.",
+    "Profissionais de Treinamento e Desenvolvimento: Empresas que investem na capacitação de pessoas e precisam de soluções gráficas que facilitem o aprendizado.",
 ];
 
 export function EligibleProfileSection() {
@@ -27,8 +25,9 @@ export function EligibleProfileSection() {
                     </h2>
 
                     <p className="text-white/80 text-center mb-8">
-                        Você conhece alguém que se encaixa neste perfil? Essa pessoa é um candidato
-                        ideal para o programa.
+                        Você conhece alguém que busca soluções gráficas de alto padrão para
+                        potencializar o aprendizado e transformar a educação? Esse é um perfil ideal
+                        para vivenciar a experiência do programa Educação ComVida.
                     </p>
 
                     {/* Lista de perfis */}
@@ -59,6 +58,15 @@ export function EligibleProfileSection() {
                             </li>
                         ))}
                     </ul>
+
+                    <div className="text-center mt-8">
+                        <a
+                            href="#formulario"
+                            className="font-primaria inline-flex items-center justify-center px-6 py-3 text-sm font-semibold text-white bg-azul-principal rounded-full transition-colors duration-200 shadow-lg hover:bg-azul-institucional"
+                        >
+                            Quero ser um Embaixador
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>

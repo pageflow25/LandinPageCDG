@@ -11,26 +11,26 @@
 const BENEFICIOS = [
     {
         id: 1,
-        titulo: "Recompensas reais",
-        descricao: "Você recebe créditos a cada indicação que se torna cliente. Sem sorteios, sem chances — apenas recompensas garantidas.",
+        titulo: "Recompensas com Propósito",
+        descricao: "Receba créditos a cada indicação que se tornar cliente, transformando sua rede em benefícios reais para o seu projeto.",
         icone: "gift",
     },
     {
         id: 2,
-        titulo: "Seja um embaixador",
-        descricao: "Ao indicar, você se torna parte do nosso programa de embaixadores, fortalecendo a comunidade Casa da Gráfica.",
+        titulo: "Seja um Embaixador",
+        descricao: "Ao indicar, você fortalece nossa história e passa a atuar como um elo estratégico na expansão da nossa comunidade educacional.",
         icone: "star",
     },
     {
         id: 3,
-        titulo: "Ajude quem você conhece",
-        descricao: "Seus indicados recebem o mesmo atendimento de qualidade que você. Indique quem precisa de soluções gráficas.",
+        titulo: "Apoie o Crescimento de Outros",
+        descricao: "Seus indicados recebem a mesma consultoria e dedicação total que você já conhece na Casa da Gráfica.",
         icone: "people",
     },
     {
         id: 4,
-        titulo: "Crescimento coletivo",
-        descricao: "Cada indicação fortalece nossa comunidade e permite que continuemos oferecendo o melhor serviço.",
+        titulo: "Impacto no Ecossistema Educacional",
+        descricao: "Cada nova parceria fortalece nossa rede, permitindo a constante inovação e a entrega de materiais didáticos de alto padrão que valorizam o aprendizado e elevam a experiência do aluno.",
         icone: "growth",
     },
 ];
@@ -79,8 +79,8 @@ export function BenefitsSection() {
                         Benefícios do Programa
                     </h2>
                     <p className="text-white/80 max-w-2xl mx-auto">
-                        Mais do que recompensas, você faz parte de uma comunidade que valoriza
-                        relacionamentos e crescimento mútuo.
+                        Mais do que recompensas, você se torna parte essencial de uma rede que une
+                        o reconhecimento pela nossa história ao propósito de transformar a educação.
                     </p>
                 </div>
 
