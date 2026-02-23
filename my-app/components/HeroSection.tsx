@@ -36,7 +36,7 @@ export function HeroSection() {
 
                     {/* Subheadline */}
                     <p className="text-lg md:text-xl text-white/90 mb-8 max-w-2xl">
-                        Seja um parceiro da Casa da Gráfica. Indique novos clientes e receba
+                        Seja um Cliente Amigo da Casa da Gráfica. Indique novos clientes e receba
                         recompensas a cada indicação que se tornar cliente.
                     </p>
 

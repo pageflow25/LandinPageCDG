@@ -33,7 +33,7 @@ export function ProjectSection() {
                                 </strong>{" "}
                                 Ele nasceu com o propósito de{" "}
                                 <strong className="text-white font-semibold">
-                                    transformar nossa rede de clientes em verdadeiros parceiros.
+                                    transformar nossa rede de clientes em verdadeiros amigos.
                                 </strong>{" "}
                                 Mais do que um convite, é um chamado à ação{" "}
                                 <strong className="text-white font-semibold">
@@ -60,7 +60,7 @@ export function ProjectSection() {
                         <div className="relative w-44 h-56 md:w-52 md:h-68 lg:w-60 lg:h-76 mt-16 lg:mt-24">
                             <Image
                                 src={IMAGEM_CLIENTE_2}
-                                alt="Parceiros do programa Educação ComVida"
+                                alt="Clientes Amigos do programa Educação ComVida"
                                 fill
                                 className="object-contain"
                                 sizes="(max-width: 768px) 176px, (max-width: 1024px) 208px, 240px"

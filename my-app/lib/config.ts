@@ -23,6 +23,5 @@ export const IMAGENS = {
     recompensas: "https://placehold.co/600x400/E6E7E9/0B284F?text=Recompensas",
 };
 
-// URL do regulamento completo
-// TODO: Substituir pela URL real do regulamento
-export const REGULAMENTO_URL = "https://docs.google.com/document/d/1svLABV31lSriZchaMPVhgn5YToAwRybW/edit?usp=drive_link&ouid=109682561889587854520&rtpof=true&sd=true";
+// URL do regulamento completo (página interna)
+export const REGULAMENTO_URL = "/regulamento";

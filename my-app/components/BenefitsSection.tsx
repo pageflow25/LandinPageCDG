@@ -4,7 +4,7 @@
  * Responsabilidades:
  * - Explicar o que o cliente ganha ao indicar
  * - Tom educativo e institucional
- * - Reforçar papel de Parceiro
+ * - Reforçar papel de Cliente Amigo
  */
 
 // Benefícios do programa
@@ -17,7 +17,7 @@ const BENEFICIOS = [
     },
     {
         id: 2,
-        titulo: "Seja um Parceiro",
+        titulo: "Seja um Cliente Amigo",
         descricao: "Ao indicar, você fortalece nossa história e passa a atuar como um elo estratégico na expansão da nossa comunidade educacional.",
         icone: "star",
     },
