@@ -74,7 +74,7 @@ export function BenefitsSection() {
         <section className="section-padding relative">
             <div className="container-brand">
                 {/* Título */}
-                <div className="text-center mb-12">
+                <div className="text-center mb-12" data-aos="fade-up">
                     <h2 className="font-primaria text-2xl md:text-3xl font-bold text-white mb-4">
                         Benefícios do Programa
                     </h2>
@@ -89,6 +89,8 @@ export function BenefitsSection() {
                     {BENEFICIOS.map((beneficio) => (
                         <article
                             key={beneficio.id}
+                            data-aos="fade-up"
+                            data-aos-delay={beneficio.id * 100}
                             className="flex gap-4 p-6 rounded-xl bg-white/15 backdrop-blur-sm border border-white/20"
                         >
                             {/* Ícone */}

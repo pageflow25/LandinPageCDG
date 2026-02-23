@@ -112,7 +112,7 @@ export function ReferralForm() {
                 <div className="relative flex flex-col md:flex-row justify-end">
 
                     {/* Coluna direita — título + formulário */}
-                    <div className="w-full md:w-[58%] lg:w-[55%] min-w-0">
+                    <div className="w-full md:w-[58%] lg:w-[55%] min-w-0" data-aos="fade-up">
                         {/* Título */}
                         <div className="text-center mb-8">
                             <h2 className="font-primaria text-2xl md:text-3xl font-bold text-white mb-4">
@@ -125,143 +125,143 @@ export function ReferralForm() {
                         </div>
 
                         <div className="min-w-0">
-                        <form
-                            onSubmit={handleSubmit}
-                            className="bg-white rounded-2xl p-6 md:p-8 shadow-xl"
-                        >
-                            {/* Seção Afiliado */}
-                            <fieldset className="mb-6">
-                                <legend className="font-primaria text-lg font-semibold text-azul-escuro mb-4">
-                                    Seus dados (quem indica)
-                                </legend>
-
-                                <div className="space-y-4">
-                                    <div>
-                                        <label
-                                            htmlFor="nomeAfiliado"
-                                            className="block text-sm font-medium text-texto-secundario mb-1"
-                                        >
-                                            Nome completo
-                                        </label>
-                                        <input
-                                            type="text"
-                                            id="nomeAfiliado"
-                                            name="nomeAfiliado"
-                                            value={formData.nomeAfiliado}
-                                            onChange={handleChange}
-                                            required
-                                            className="w-full px-4 py-3 rounded-lg border border-cinza-leve focus:border-azul-principal focus:ring-2 focus:ring-azul-principal/20 outline-none transition-all"
-                                            placeholder="Seu nome"
-                                        />
-                                    </div>
-
-                                    <div>
-                                        <label
-                                            htmlFor="emailAfiliado"
-                                            className="block text-sm font-medium text-texto-secundario mb-1"
-                                        >
-                                            E-mail
-                                        </label>
-                                        <input
-                                            type="email"
-                                            id="emailAfiliado"
-                                            name="emailAfiliado"
-                                            value={formData.emailAfiliado}
-                                            onChange={handleChange}
-                                            required
-                                            className="w-full px-4 py-3 rounded-lg border border-cinza-leve focus:border-azul-principal focus:ring-2 focus:ring-azul-principal/20 outline-none transition-all"
-                                            placeholder="seu@email.com"
-                                        />
-                                    </div>
-
-                                    <div>
-                                        <label
-                                            htmlFor="telefoneAfiliado"
-                                            className="block text-sm font-medium text-texto-secundario mb-1"
-                                        >
-                                            Telefone
-                                        </label>
-                                        <input
-                                            type="tel"
-                                            id="telefoneAfiliado"
-                                            name="telefoneAfiliado"
-                                            value={formData.telefoneAfiliado}
-                                            onChange={handleChange}
-                                            required
-                                            className="w-full px-4 py-3 rounded-lg border border-cinza-leve focus:border-azul-principal focus:ring-2 focus:ring-azul-principal/20 outline-none transition-all"
-                                            placeholder="(00) 00000-0000"
-                                        />
-                                    </div>
-                                </div>
-                            </fieldset>
-
-                            {/* Divisor visual */}
-                            <hr className="border-cinza-leve mb-6" />
-
-                            {/* Seção Indicado */}
-                            <fieldset className="mb-6">
-                                <legend className="font-primaria text-lg font-semibold text-azul-escuro mb-4">
-                                    Dados de quem você indica
-                                </legend>
-
-                                <div className="space-y-4">
-                                    <div>
-                                        <label
-                                            htmlFor="nomeIndicado"
-                                            className="block text-sm font-medium text-texto-secundario mb-1"
-                                        >
-                                            Nome completo
-                                        </label>
-                                        <input
-                                            type="text"
-                                            id="nomeIndicado"
-                                            name="nomeIndicado"
-                                            value={formData.nomeIndicado}
-                                            onChange={handleChange}
-                                            required
-                                            className="w-full px-4 py-3 rounded-lg border border-cinza-leve focus:border-azul-principal focus:ring-2 focus:ring-azul-principal/20 outline-none transition-all"
-                                            placeholder="Nome do indicado"
-                                        />
-                                    </div>
-
-                                    <div>
-                                        <label
-                                            htmlFor="telefoneIndicado"
-                                            className="block text-sm font-medium text-texto-secundario mb-1"
-                                        >
-                                            Telefone
-                                        </label>
-                                        <input
-                                            type="tel"
-                                            id="telefoneIndicado"
-                                            name="telefoneIndicado"
-                                            value={formData.telefoneIndicado}
-                                            onChange={handleChange}
-                                            required
-                                            className="w-full px-4 py-3 rounded-lg border border-cinza-leve focus:border-azul-principal focus:ring-2 focus:ring-azul-principal/20 outline-none transition-all"
-                                            placeholder="(00) 00000-0000"
-                                        />
-                                    </div>
-                                </div>
-                            </fieldset>
-
-                            {/* Mensagem de erro */}
-                            {error && (
-                                <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg text-red-700 text-sm">
-                                    {error}
-                                </div>
-                            )}
-
-                            {/* Botão submit */}
-                            <button
-                                type="submit"
-                                disabled={isSubmitting}
-                                className="font-primaria w-full py-4 px-6 text-lg font-semibold text-white bg-azul-destaque rounded-full hover:bg-azul-principal disabled:bg-cinza-leve disabled:cursor-not-allowed transition-colors duration-200 shadow-lg hover:shadow-xl"
+                            <form
+                                onSubmit={handleSubmit}
+                                className="bg-white rounded-2xl p-6 md:p-8 shadow-xl"
                             >
-                                {isSubmitting ? "Enviando..." : "Registrar indicação"}
-                            </button>
-                        </form>
-                    </div>
+                                {/* Seção Afiliado */}
+                                <fieldset className="mb-6">
+                                    <legend className="font-primaria text-lg font-semibold text-azul-escuro mb-4">
+                                        Seus dados (quem indica)
+                                    </legend>
+
+                                    <div className="space-y-4">
+                                        <div>
+                                            <label
+                                                htmlFor="nomeAfiliado"
+                                                className="block text-sm font-medium text-texto-secundario mb-1"
+                                            >
+                                                Nome completo
+                                            </label>
+                                            <input
+                                                type="text"
+                                                id="nomeAfiliado"
+                                                name="nomeAfiliado"
+                                                value={formData.nomeAfiliado}
+                                                onChange={handleChange}
+                                                required
+                                                className="w-full px-4 py-3 rounded-lg border border-cinza-leve focus:border-azul-principal focus:ring-2 focus:ring-azul-principal/20 outline-none transition-all"
+                                                placeholder="Seu nome"
+                                            />
+                                        </div>
+
+                                        <div>
+                                            <label
+                                                htmlFor="emailAfiliado"
+                                                className="block text-sm font-medium text-texto-secundario mb-1"
+                                            >
+                                                E-mail
+                                            </label>
+                                            <input
+                                                type="email"
+                                                id="emailAfiliado"
+                                                name="emailAfiliado"
+                                                value={formData.emailAfiliado}
+                                                onChange={handleChange}
+                                                required
+                                                className="w-full px-4 py-3 rounded-lg border border-cinza-leve focus:border-azul-principal focus:ring-2 focus:ring-azul-principal/20 outline-none transition-all"
+                                                placeholder="seu@email.com"
+                                            />
+                                        </div>
+
+                                        <div>
+                                            <label
+                                                htmlFor="telefoneAfiliado"
+                                                className="block text-sm font-medium text-texto-secundario mb-1"
+                                            >
+                                                Telefone
+                                            </label>
+                                            <input
+                                                type="tel"
+                                                id="telefoneAfiliado"
+                                                name="telefoneAfiliado"
+                                                value={formData.telefoneAfiliado}
+                                                onChange={handleChange}
+                                                required
+                                                className="w-full px-4 py-3 rounded-lg border border-cinza-leve focus:border-azul-principal focus:ring-2 focus:ring-azul-principal/20 outline-none transition-all"
+                                                placeholder="(00) 00000-0000"
+                                            />
+                                        </div>
+                                    </div>
+                                </fieldset>
+
+                                {/* Divisor visual */}
+                                <hr className="border-cinza-leve mb-6" />
+
+                                {/* Seção Indicado */}
+                                <fieldset className="mb-6">
+                                    <legend className="font-primaria text-lg font-semibold text-azul-escuro mb-4">
+                                        Dados de quem você indica
+                                    </legend>
+
+                                    <div className="space-y-4">
+                                        <div>
+                                            <label
+                                                htmlFor="nomeIndicado"
+                                                className="block text-sm font-medium text-texto-secundario mb-1"
+                                            >
+                                                Nome completo
+                                            </label>
+                                            <input
+                                                type="text"
+                                                id="nomeIndicado"
+                                                name="nomeIndicado"
+                                                value={formData.nomeIndicado}
+                                                onChange={handleChange}
+                                                required
+                                                className="w-full px-4 py-3 rounded-lg border border-cinza-leve focus:border-azul-principal focus:ring-2 focus:ring-azul-principal/20 outline-none transition-all"
+                                                placeholder="Nome do indicado"
+                                            />
+                                        </div>
+
+                                        <div>
+                                            <label
+                                                htmlFor="telefoneIndicado"
+                                                className="block text-sm font-medium text-texto-secundario mb-1"
+                                            >
+                                                Telefone
+                                            </label>
+                                            <input
+                                                type="tel"
+                                                id="telefoneIndicado"
+                                                name="telefoneIndicado"
+                                                value={formData.telefoneIndicado}
+                                                onChange={handleChange}
+                                                required
+                                                className="w-full px-4 py-3 rounded-lg border border-cinza-leve focus:border-azul-principal focus:ring-2 focus:ring-azul-principal/20 outline-none transition-all"
+                                                placeholder="(00) 00000-0000"
+                                            />
+                                        </div>
+                                    </div>
+                                </fieldset>
+
+                                {/* Mensagem de erro */}
+                                {error && (
+                                    <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg text-red-700 text-sm">
+                                        {error}
+                                    </div>
+                                )}
+
+                                {/* Botão submit */}
+                                <button
+                                    type="submit"
+                                    disabled={isSubmitting}
+                                    className="font-primaria w-full py-4 px-6 text-lg font-semibold text-white bg-azul-destaque rounded-full hover:bg-azul-principal disabled:bg-cinza-leve disabled:cursor-not-allowed transition-colors duration-200 shadow-lg hover:shadow-xl"
+                                >
+                                    {isSubmitting ? "Enviando..." : "Registrar indicação"}
+                                </button>
+                            </form>
+                        </div>
                     </div>{/* fim coluna direita */}
                 </div>{/* fim flex row */}
             </div>

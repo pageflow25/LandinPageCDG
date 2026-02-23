@@ -50,7 +50,7 @@ export function RewardsSection() {
         <section className="section-padding pt-5! md:pt-6! relative">
             <div className="container-brand">
                 {/* Título da seção */}
-                <div className="text-center mb-12">
+                <div className="text-center mb-12" data-aos="fade-up">
                     <h2 className="font-primaria text-2xl md:text-3xl font-bold text-white mb-4">
                         Recompensas do Programa
                     </h2>
@@ -67,6 +67,8 @@ export function RewardsSection() {
                     {RECOMPENSAS.map((item) => (
                         <article
                             key={item.id}
+                            data-aos="fade-up"
+                            data-aos-delay={item.id * 100}
                             className="bg-white/10 backdrop-blur-sm rounded-xl p-3 text-center flex flex-col items-center border border-white/20 transition-transform hover:scale-105"
                         >
                             {/* Título da indicação */}
@@ -96,6 +98,17 @@ export function RewardsSection() {
                                     sizes="(max-width: 640px) 80vw, (max-width: 1024px) 40vw, 22vw"
                                 />
                             </div>
+
+                            {/* CTA para o formulário */}
+                            <a
+                                href="#formulario"
+                                className="mt-3 inline-flex items-center gap-1.5 rounded-full bg-azul-destaque px-4 py-2 text-xs font-semibold text-azul-escuro shadow-md transition-colors hover:bg-white hover:text-azul-institucional"
+                            >
+                                Indicar agora
+                                <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
+                                </svg>
+                            </a>
                         </article>
                     ))}
                 </div>

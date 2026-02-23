@@ -54,7 +54,7 @@ export function FAQSection() {
     return (
         <section className="section-padding relative">
             <div className="container-brand">
-                <div className="max-w-3xl mx-auto">
+                <div className="max-w-3xl mx-auto" data-aos="fade-up">
                     {/* Título */}
                     <div className="text-center mb-12">
                         <h2 className="font-primaria text-2xl md:text-3xl font-bold text-white mb-4">

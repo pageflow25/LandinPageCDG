@@ -52,6 +52,8 @@ export const metadata: Metadata = {
   },
 };
 
+import { AosProvider } from "@/components/AosProvider";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -62,6 +64,7 @@ export default function RootLayout({
       <body
         className={`${bricolage.variable} ${sora.variable} ${caveat.variable} antialiased bg-azul-principal`}
       >
+        <AosProvider />
         {children}
       </body>
     </html>

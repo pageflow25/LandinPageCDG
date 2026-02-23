@@ -16,7 +16,7 @@ export function Footer() {
     return (
         <footer className="bg-azul-escuro text-white py-12">
             <div className="container-brand">
-                <div className="flex flex-col items-center text-center">
+                <div className="flex flex-col items-center text-center" data-aos="fade-up">
                     {/* Logo */}
                     <div className="mb-6">
                         <Image

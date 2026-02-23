@@ -20,18 +20,18 @@ export function EligibleProfileSection() {
             <div className="container-brand">
                 <div className="max-w-3xl mx-auto">
                     {/* Título */}
-                    <h2 className="font-primaria text-2xl md:text-3xl font-bold text-white mb-4 text-center">
+                    <h2 className="font-primaria text-2xl md:text-3xl font-bold text-white mb-4 text-center" data-aos="fade-up">
                         Quem pode ser indicado?
                     </h2>
 
-                    <p className="text-white/80 text-center mb-8">
+                    <p className="text-white/80 text-center mb-8" data-aos="fade-up" data-aos-delay="100">
                         Você conhece alguém que busca soluções gráficas de alto padrão para
                         potencializar o aprendizado e transformar a educação? Esse é um perfil ideal
                         para vivenciar a experiência do programa Educação ComVida.
                     </p>
 
                     {/* Lista de perfis */}
-                    <ul className="space-y-4">
+                    <ul className="space-y-4" data-aos="fade-up" data-aos-delay="200">
                         {PERFIL_IDEAL.map((item, index) => (
                             <li
                                 key={index}

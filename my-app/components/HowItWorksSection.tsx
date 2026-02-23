@@ -30,7 +30,7 @@ export function HowItWorksSection() {
         <section className="bg-azul-escuro section-padding bg-pattern-logo">
             <div className="container-brand">
                 {/* Título */}
-                <div className="text-center mb-12">
+                <div className="text-center mb-12" data-aos="fade-up">
                     <h2 className="font-primaria text-2xl md:text-3xl font-bold text-white mb-4">
                         Como funciona
                     </h2>
@@ -45,6 +45,8 @@ export function HowItWorksSection() {
                         {PASSOS.map((passo, index) => (
                             <article
                                 key={passo.numero}
+                                data-aos="fade-up"
+                                data-aos-delay={index * 150}
                                 className="relative text-center"
                             >
                                 {/* Linha conectora (desktop) */}

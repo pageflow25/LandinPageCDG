@@ -20,7 +20,7 @@ export function ProjectSection() {
             <div className="container-brand">
                 <div className="flex flex-col lg:flex-row gap-10 lg:gap-16 items-start">
                     {/* Lado esquerdo — Texto */}
-                    <div className="flex-1 w-full">
+                    <div className="flex-1 w-full" data-aos="fade-right">
                         <h2 className="font-primaria text-2xl md:text-3xl font-bold text-white mb-8">
                             O que é 'Educação Com<strong>Vida</strong>'?
                         </h2>
@@ -44,7 +44,7 @@ export function ProjectSection() {
                     </div>
 
                     {/* Lado direito — Imagens de clientes (PNGs já possuem shape decorativo) */}
-                    <div className="flex items-start shrink-0 -space-x-6 lg:-space-x-10">
+                    <div className="flex items-start shrink-0 -space-x-6 lg:-space-x-10" data-aos="fade-left" data-aos-delay="200">
                         {/* Imagem esquerda — alinhada ao topo */}
                         <div className="relative w-44 h-56 md:w-52 md:h-68 lg:w-60 lg:h-76">
                             <Image
