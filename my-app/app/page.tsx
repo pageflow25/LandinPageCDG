@@ -26,8 +26,9 @@ export default function Home() {
   return (
     <main>
       <HeroSection />
-      <ProjectSection />
       <RewardsSection />
+      <ProjectSection />
+
       <EligibleProfileSection />
       <BenefitsSection />
       <ReferralForm />

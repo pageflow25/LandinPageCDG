@@ -36,7 +36,7 @@ export function HeroSection() {
 
                     {/* Subheadline */}
                     <p className="text-lg md:text-xl text-white/90 mb-8 max-w-2xl">
-                        Seja um embaixador da Casa da Gráfica. Indique novos clientes e receba
+                        Seja um parceiro da Casa da Gráfica. Indique novos clientes e receba
                         recompensas a cada indicação que se tornar cliente.
                     </p>
 
@@ -53,10 +53,10 @@ export function HeroSection() {
             {/* Imagem decorativa — canto direito */}
             <div className="hidden md:block !absolute bottom-0 right-4 !z-0">
                 <Image
-                    src="https://ik.imagekit.io/pageflow/Educa%C3%A7%C3%A3o-ComVida/mo%C3%A7a%20capa.png"
+                    src="https://ik.imagekit.io/pageflow/Educa%C3%A7%C3%A3o-ComVida/homem_hero.png"
                     alt="Pessoa indicando no programa Educação ComVida"
-                    width={350}
-                    height={450}
+                    width={450}
+                    height={550}
                     className="object-contain drop-shadow-[0_0_15px_rgba(0,0,0,0.6)]"
                     priority
                 />

@@ -4,7 +4,7 @@
  * Responsabilidades:
  * - Explicar o que o cliente ganha ao indicar
  * - Tom educativo e institucional
- * - Reforçar papel de embaixador
+ * - Reforçar papel de Parceiro
  */
 
 // Benefícios do programa
@@ -17,7 +17,7 @@ const BENEFICIOS = [
     },
     {
         id: 2,
-        titulo: "Seja um Embaixador",
+        titulo: "Seja um Parceiro",
         descricao: "Ao indicar, você fortalece nossa história e passa a atuar como um elo estratégico na expansão da nossa comunidade educacional.",
         icone: "star",
     },

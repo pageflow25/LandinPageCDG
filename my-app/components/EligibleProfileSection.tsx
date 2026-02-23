@@ -64,7 +64,7 @@ export function EligibleProfileSection() {
                             href="#formulario"
                             className="font-primaria inline-flex items-center justify-center px-6 py-3 text-sm font-semibold text-white bg-azul-principal rounded-full transition-colors duration-200 shadow-lg hover:bg-azul-institucional"
                         >
-                            Quero ser um Embaixador
+                            Quero Indicar Agora!
                         </a>
                     </div>
                 </div>

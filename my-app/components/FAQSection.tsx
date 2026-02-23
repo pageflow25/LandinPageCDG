@@ -34,7 +34,7 @@ const PERGUNTAS = [
     {
         id: 4,
         pergunta: "O que acontece se meu indicado não comprar?",
-        resposta: "Se o seu indicado não realizar compra com a CDF, nenhuma recompensa é gerada para você. Mas, não se preocupe, você pode continuar indicando outras pessoas.",
+        resposta: "Se o seu indicado não realizar compra com a CDG, nenhuma recompensa é gerada para você. Mas, não se preocupe, você pode continuar indicando outras pessoas.",
     },
     {
         id: 5,

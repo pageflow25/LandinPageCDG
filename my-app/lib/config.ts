@@ -25,4 +25,4 @@ export const IMAGENS = {
 
 // URL do regulamento completo
 // TODO: Substituir pela URL real do regulamento
-export const REGULAMENTO_URL = "https://casadagrafica.com.br/regulamento-indicacao";
+export const REGULAMENTO_URL = "https://docs.google.com/document/d/1svLABV31lSriZchaMPVhgn5YToAwRybW/edit?usp=drive_link&ouid=109682561889587854520&rtpof=true&sd=true";
