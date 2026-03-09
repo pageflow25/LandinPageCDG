@@ -30,15 +30,15 @@ const RECOMPENSAS = [
     {
         id: 3,
         titulo: "3º Indicação",
-        descricao: "Ganhe um Tablet",
+        descricao: "Ganhe um Ipad",
         imagemUrl:
-            "https://ik.imagekit.io/pageflow/Educa%C3%A7%C3%A3o-ComVida/Tablet.png?updatedAt=1770940158259",
-        imagemAlt: "Tablet Samsung",
+            "https://ik.imagekit.io/pageflow/Educa%C3%A7%C3%A3o-ComVida/Tablet%20(sem%20logo).png",
+        imagemAlt: "Ipad",
     },
     {
         id: 4,
         titulo: "4º Indicação",
-        descricao: "Ganhe um Smart Watch",
+        descricao: "Ganhe um Apple Watch",
         imagemUrl:
             "https://ik.imagekit.io/pageflow/Educa%C3%A7%C3%A3o-ComVida/smartwatch.png?updatedAt=1770940158347",
         imagemAlt: "Smartwatch",
@@ -54,7 +54,7 @@ export function RewardsSection() {
                     <h2 className="font-primaria text-2xl md:text-3xl font-bold text-white mb-4">
                         Recompensas do Programa
                     </h2>
-                    <p className="text-white/80 max-w-2xl mx-auto">
+                    <p className="font-secundaria text-white/80 max-w-2xl mx-auto">
                         No Educação ComVida, sua parceria gera frutos. A cada novo cliente que
                         chega por sua indicação, você recebe recompensas exclusivas. Quanto mais
                         você compartilha sua experiência e ajuda a expandir nossa comunidade,
@@ -89,13 +89,15 @@ export function RewardsSection() {
                             )}
 
                             {/* Imagem do produto */}
-                            <div className="relative w-full aspect-3/2 mt-auto">
+                            <div className="relative w-full aspect-[4/3] mt-auto">
                                 <Image
                                     src={item.imagemUrl}
                                     alt={item.imagemAlt}
                                     fill
-                                    className="object-contain"
+                                    className="object-contain scale-125 drop-shadow-md"
                                     sizes="(max-width: 640px) 80vw, (max-width: 1024px) 40vw, 22vw"
+                                    quality={100}
+                                    unoptimized
                                 />
                             </div>
 

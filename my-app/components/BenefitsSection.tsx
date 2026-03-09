@@ -17,7 +17,7 @@ const BENEFICIOS = [
     },
     {
         id: 2,
-        titulo: "Seja um Cliente Amigo",
+        titulo: "Seja um Amigo",
         descricao: "Ao indicar, você fortalece nossa história e passa a atuar como um elo estratégico na expansão da nossa comunidade educacional.",
         icone: "star",
     },
@@ -78,7 +78,7 @@ export function BenefitsSection() {
                     <h2 className="font-primaria text-2xl md:text-3xl font-bold text-white mb-4">
                         Benefícios do Programa
                     </h2>
-                    <p className="text-white/80 max-w-2xl mx-auto">
+                    <p className="font-secundaria text-white/80 max-w-2xl mx-auto">
                         Mais do que recompensas, você se torna parte essencial de uma rede que une
                         o reconhecimento pela nossa história ao propósito de transformar a educação.
                     </p>
@@ -103,7 +103,7 @@ export function BenefitsSection() {
                                 <h3 className="font-primaria text-lg font-semibold text-white mb-2">
                                     {beneficio.titulo}
                                 </h3>
-                                <p className="text-white/70 text-sm">
+                                <p className="font-secundaria text-white/70 text-sm">
                                     {beneficio.descricao}
                                 </p>
                             </div>

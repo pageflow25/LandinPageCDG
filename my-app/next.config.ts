@@ -4,6 +4,7 @@ const nextConfig: NextConfig = {
   // Permite imagens externas dos placeholders
   // TODO: Adicionar domínios reais quando as URLs de imagem forem definidas
   images: {
+    qualities: [25, 50, 75, 100],
     remotePatterns: [
       {
         protocol: "https",

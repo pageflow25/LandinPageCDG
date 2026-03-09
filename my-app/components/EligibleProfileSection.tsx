@@ -24,7 +24,7 @@ export function EligibleProfileSection() {
                         Quem pode ser indicado?
                     </h2>
 
-                    <p className="text-white/80 text-center mb-8" data-aos="fade-up" data-aos-delay="100">
+                    <p className="font-secundaria text-white/80 text-center mb-8" data-aos="fade-up" data-aos-delay="100">
                         Você conhece alguém que busca soluções gráficas de alto padrão para
                         potencializar o aprendizado e transformar a educação? Esse é um perfil ideal
                         para vivenciar a experiência do programa Educação ComVida.
@@ -54,7 +54,7 @@ export function EligibleProfileSection() {
                                     </svg>
                                 </span>
 
-                                <span className="text-white">{item}</span>
+                                <span className="font-secundaria text-white">{item}</span>
                             </li>
                         ))}
                     </ul>

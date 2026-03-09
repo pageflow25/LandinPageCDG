@@ -28,6 +28,7 @@ interface FormData {
     emailAfiliado: string;
     telefoneAfiliado: string;
     nomeIndicado: string;
+    emailIndicado: string;
     telefoneIndicado: string;
 }
 
@@ -36,6 +37,7 @@ const INITIAL_FORM_DATA: FormData = {
     emailAfiliado: "",
     telefoneAfiliado: "",
     nomeIndicado: "",
+    emailIndicado: "",
     telefoneIndicado: "",
 };
 
@@ -67,6 +69,7 @@ export function ReferralForm() {
                 },
                 indicado: {
                     nome: formData.nomeIndicado,
+                    email: formData.emailIndicado,
                     telefone: formData.telefoneIndicado,
                 },
             };
@@ -97,7 +100,7 @@ export function ReferralForm() {
         <section id="formulario" className="bg-azul-escuro section-padding bg-pattern-logo overflow-hidden relative">
             <div className="container-brand">
                 {/* Imagem absoluta — flutua à esquerda, sem disputar espaço com o form */}
-                <div className="hidden md:block absolute -left-16 lg:-left-32 xl:-left-40 top-52 z-30 w-[68%] lg:w-[76%] xl:w-[80%] pointer-events-none">
+                <div className="hidden md:block absolute -left-16 lg:-left-32 xl:-left-48 top-52 z-30 w-[68%] lg:w-[76%] xl:w-[80%] pointer-events-none">
                     <Image
                         src={IMAGEM_INSCRICAO}
                         alt="Mulher apontando para o formulário de indicação"
@@ -105,6 +108,8 @@ export function ReferralForm() {
                         height={1200}
                         className="w-full h-auto relative"
                         priority
+                        quality={100}
+                        unoptimized
                     />
                 </div>
 
@@ -221,6 +226,25 @@ export function ReferralForm() {
                                                 required
                                                 className="w-full px-4 py-3 rounded-lg border border-cinza-leve focus:border-azul-principal focus:ring-2 focus:ring-azul-principal/20 outline-none transition-all"
                                                 placeholder="Nome do indicado"
+                                            />
+                                        </div>
+
+                                        <div>
+                                            <label
+                                                htmlFor="emailIndicado"
+                                                className="block text-sm font-medium text-texto-secundario mb-1"
+                                            >
+                                                E-mail do indicado
+                                            </label>
+                                            <input
+                                                type="email"
+                                                id="emailIndicado"
+                                                name="emailIndicado"
+                                                value={formData.emailIndicado}
+                                                onChange={handleChange}
+                                                required
+                                                className="w-full px-4 py-3 rounded-lg border border-cinza-leve focus:border-azul-principal focus:ring-2 focus:ring-azul-principal/20 outline-none transition-all"
+                                                placeholder="email@doindicado.com"
                                             />
                                         </div>
 

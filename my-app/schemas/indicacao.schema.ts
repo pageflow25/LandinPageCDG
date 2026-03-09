@@ -18,6 +18,7 @@ const afiliadoSchema = z.object({
 
 const indicadoSchema = z.object({
     nome: z.string().min(2, "Nome deve ter ao menos 2 caracteres"),
+    email: z.string().email("E-mail inválido"),
     telefone: z
         .string()
         .min(10, "Telefone deve ter ao menos 10 dígitos")

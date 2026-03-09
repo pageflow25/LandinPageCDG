@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { indicacaoSchema } from "@/schemas/indicacao.schema";
 import { enviarIndicacao } from "@/services/google-sheets.service";
+import { enviarEmailsIndicacao } from "@/services/email.service";
 
 /**
  * API Route - Indicação
@@ -10,6 +11,7 @@ import { enviarIndicacao } from "@/services/google-sheets.service";
  * Responsabilidades:
  * - Validar payload com Zod
  * - Delegar envio ao service do Google Apps Script
+ * - Disparar e-mails de agradecimento e notificação via SMTP
  * - Retornar sucesso ou erro
  */
 
@@ -27,8 +29,13 @@ export async function POST(request: NextRequest) {
             );
         }
 
-        // Envia para Google Apps Script
+        // Envia para Google Apps Script (fluxo principal)
         await enviarIndicacao(result.data);
+
+        // Dispara e-mails em background — falhas não bloqueiam a resposta
+        enviarEmailsIndicacao(result.data).catch((error) => {
+            console.error("[EMAIL] Erro ao disparar e-mails:", error);
+        });
 
         return NextResponse.json({
             success: true,

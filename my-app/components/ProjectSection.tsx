@@ -12,7 +12,7 @@ import Image from "next/image";
 const IMAGEM_CLIENTE_1 =
     "https://ik.imagekit.io/pageflow/Educa%C3%A7%C3%A3o-ComVida/Cliente%201.png?updatedAt=1770940635824";
 const IMAGEM_CLIENTE_2 =
-    "https://ik.imagekit.io/pageflow/Educa%C3%A7%C3%A3o-ComVida/Cliente%202.png?updatedAt=1770940635734";
+    "https://ik.imagekit.io/pageflow/Educa%C3%A7%C3%A3o-ComVida/Cliente%202.png";
 
 export function ProjectSection() {
     return (
@@ -26,7 +26,7 @@ export function ProjectSection() {
                         </h2>
 
                         <div className="rounded-2xl bg-azul-destaque shadow-lg p-6 md:p-8">
-                            <p className="text-white/90 text-base md:text-lg leading-relaxed">
+                            <p className="font-secundaria text-white/90 text-base md:text-lg leading-relaxed">
                                 O <strong className="text-white font-semibold">Educação ComVida</strong> é o{" "}
                                 <strong className="text-white font-semibold">
                                     programa oficial de indicação da Casa da Gráfica.
@@ -53,6 +53,8 @@ export function ProjectSection() {
                                 fill
                                 className="object-contain"
                                 sizes="(max-width: 768px) 176px, (max-width: 1024px) 208px, 240px"
+                                quality={100}
+                                unoptimized
                             />
                         </div>
 
@@ -64,6 +66,8 @@ export function ProjectSection() {
                                 fill
                                 className="object-contain"
                                 sizes="(max-width: 768px) 176px, (max-width: 1024px) 208px, 240px"
+                                quality={100}
+                                unoptimized
                             />
                         </div>
                     </div>

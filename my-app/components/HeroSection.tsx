@@ -28,15 +28,15 @@ export function HeroSection() {
                     </div>
 
                     {/* Headline */}
-                    <h1 className="font-primaria text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight mb-6">
+                    <h1 className="font-primaria text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight mb-0">
                         Educação que conecta.
                         <br />
                         <span className="text-azul-destaque">Indicações que geram valor.</span>
                     </h1>
 
                     {/* Subheadline */}
-                    <p className="text-lg md:text-xl text-white/90 mb-8 max-w-2xl">
-                        Seja um Cliente Amigo da Casa da Gráfica. Indique novos clientes e receba
+                    <p className="font-secundaria text-lg md:text-xl text-white/90 mb-8 max-w-2xl">
+                        Seja um Amigo da Casa da Gráfica. Indique novos clientes e receba
                         recompensas a cada indicação que se tornar cliente.
                     </p>
 

@@ -51,8 +51,8 @@ const SECOES = [
             linhas: [
                 ["1 indicação", "Alexa"],
                 ["2 indicações", "Desconto nas próximas compras ou Pix para pessoa física indicadora"],
-                ["3 indicações", "Tablet"],
-                ["4 indicações", "Smart Watch"],
+                ["3 indicações", "Ipad"],
+                ["4 indicações", "Apple Watch"],
             ],
         },
         paragrafosExtra: [
