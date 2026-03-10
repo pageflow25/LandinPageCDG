@@ -1,9 +1,10 @@
 import { createAdminSupabaseClient } from "@/lib/supabase/admin";
+import type { Json } from "@/lib/supabase/types";
 
 interface LogAdminUserActionParams {
     targetUserId: string;
     actionType: "create_user" | "update_user" | "reset_password" | "deactivate_user" | "reactivate_user";
-    payload?: Record<string, unknown>;
+    payload?: Json;
     performedBy: string;
     performedByEmail?: string | null;
 }

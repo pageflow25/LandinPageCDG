@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { canManageUsers, getAuthContext } from "@/lib/auth";
 import { createAdminSupabaseClient } from "@/lib/supabase/admin";
+import type { Json } from "@/lib/supabase/types";
 import { updateUserSchema } from "@/schemas/user-management.schema";
 import { logAdminUserAction } from "@/services/admin-user-audit.service";
 
@@ -12,6 +13,16 @@ interface ProfileRow {
     email: string;
     role: string;
     is_active: boolean;
+}
+
+function toProfileAuditSnapshot(profile: ProfileRow): Json {
+    return {
+        id: profile.id,
+        full_name: profile.full_name,
+        email: profile.email,
+        role: profile.role,
+        is_active: profile.is_active,
+    };
 }
 
 export async function PATCH(
@@ -107,8 +118,8 @@ export async function PATCH(
         performedBy: auth.user.id,
         performedByEmail: auth.user.email,
         payload: {
-            before: previousProfile,
-            after: {
+            before: toProfileAuditSnapshot(previousProfile),
+            after: toProfileAuditSnapshot({
                 ...previousProfile,
                 full_name: updates.fullName ?? previousProfile.full_name,
                 role: updates.role ?? previousProfile.role,
@@ -116,7 +127,7 @@ export async function PATCH(
                     typeof updates.isActive === "boolean"
                         ? updates.isActive
                         : previousProfile.is_active,
-            },
+            }),
         },
     });
 
