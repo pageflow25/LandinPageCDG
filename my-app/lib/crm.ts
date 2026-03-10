@@ -1,4 +1,11 @@
-import { getAuthContext } from "@/lib/auth";
+import {
+    canManageUsers,
+    canViewAllReferrals,
+    canViewReferralHistory,
+    getAuthContext,
+    getRoleLabel,
+} from "@/lib/auth";
+import type { AppRole } from "@/lib/auth";
 import { getSupabaseConfigMessage } from "@/lib/env";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 
@@ -18,11 +25,13 @@ export interface ProfileRecord {
     full_name: string | null;
     email: string;
     role: string;
+    is_active: boolean;
     created_at: string;
 }
 
 export interface DashboardSnapshot {
     warning?: string;
+    role: AppRole | null;
     roleLabel: string;
     userEmail?: string;
     totalReferrals: number;
@@ -30,6 +39,17 @@ export interface DashboardSnapshot {
     convertedReferrals: number;
     usersCount: number;
     recentReferrals: ReferralRecord[];
+}
+
+export interface ReferralStatusHistoryRecord {
+    id: string;
+    referral_id: string;
+    old_status: string | null;
+    new_status: string;
+    note: string | null;
+    changed_by: string;
+    changed_by_email: string | null;
+    changed_at: string;
 }
 
 function sortByCreatedAt(items: ReferralRecord[]): ReferralRecord[] {
@@ -46,6 +66,7 @@ export async function getDashboardSnapshot(): Promise<DashboardSnapshot> {
     if (!auth.isConfigured) {
         return {
             warning: auth.warning || getSupabaseConfigMessage(),
+            role: auth.role,
             roleLabel: "Modo preparação",
             totalReferrals: 0,
             pendingReferrals: 0,
@@ -58,6 +79,7 @@ export async function getDashboardSnapshot(): Promise<DashboardSnapshot> {
     if (!auth.user) {
         return {
             warning: "Faça login para visualizar o CRM.",
+            role: auth.role,
             roleLabel: "Não autenticado",
             totalReferrals: 0,
             pendingReferrals: 0,
@@ -76,7 +98,7 @@ export async function getDashboardSnapshot(): Promise<DashboardSnapshot> {
         .order("created_at", { ascending: false })
         .limit(50);
 
-    if (auth.role !== "admin" && auth.user.email) {
+    if (!canViewAllReferrals(auth.role) && auth.user.email) {
         referralsQuery = referralsQuery.eq("affiliate_email", auth.user.email);
     }
 
@@ -85,7 +107,8 @@ export async function getDashboardSnapshot(): Promise<DashboardSnapshot> {
     if (referralsError) {
         return {
             warning: referralsError.message,
-            roleLabel: auth.role === "admin" ? "Administrador" : "Indicador",
+            role: auth.role,
+            roleLabel: getRoleLabel(auth.role),
             userEmail: auth.user.email,
             totalReferrals: 0,
             pendingReferrals: 0,
@@ -105,7 +128,7 @@ export async function getDashboardSnapshot(): Promise<DashboardSnapshot> {
 
     let usersCount = 0;
 
-    if (auth.role === "admin") {
+    if (canManageUsers(auth.role)) {
         const { count } = await supabase
             .from("profiles")
             .select("id", { count: "exact", head: true });
@@ -114,7 +137,8 @@ export async function getDashboardSnapshot(): Promise<DashboardSnapshot> {
     }
 
     return {
-        roleLabel: auth.role === "admin" ? "Administrador" : "Indicador",
+        role: auth.role,
+        roleLabel: getRoleLabel(auth.role),
         userEmail: auth.user.email,
         totalReferrals: records.length,
         pendingReferrals,
@@ -152,7 +176,7 @@ export async function getReferralList(limit = 50) {
         .order("created_at", { ascending: false })
         .limit(limit);
 
-    if (auth.role !== "admin" && auth.user.email) {
+    if (!canViewAllReferrals(auth.role) && auth.user.email) {
         query = query.eq("affiliate_email", auth.user.email);
     }
 
@@ -175,7 +199,7 @@ export async function getProfilesList(limit = 50) {
         };
     }
 
-    if (auth.role !== "admin") {
+    if (!canManageUsers(auth.role)) {
         return {
             items: [] as ProfileRecord[],
             warning: "Apenas administradores podem visualizar usuários.",
@@ -185,12 +209,53 @@ export async function getProfilesList(limit = 50) {
     const supabase = await createServerSupabaseClient();
     const { data, error } = await supabase
         .from("profiles")
-        .select("id, full_name, email, role, created_at")
+        .select("id, full_name, email, role, is_active, created_at")
         .order("created_at", { ascending: false })
         .limit(limit);
 
     return {
         items: (data ?? []) as ProfileRecord[],
+        warning: error?.message,
+    };
+}
+
+export async function getReferralStatusHistory(
+    limit = 100,
+    changedBy?: string,
+) {
+    const auth = await getAuthContext();
+
+    if (!auth.isConfigured) {
+        return {
+            items: [] as ReferralStatusHistoryRecord[],
+            warning: auth.warning || getSupabaseConfigMessage(),
+        };
+    }
+
+    if (!canViewReferralHistory(auth.role)) {
+        return {
+            items: [] as ReferralStatusHistoryRecord[],
+            warning: "Apenas administradores podem visualizar o histórico.",
+        };
+    }
+
+    const supabase = await createServerSupabaseClient();
+    let query = supabase
+        .from("referral_status_history")
+        .select(
+            "id, referral_id, old_status, new_status, note, changed_by, changed_by_email, changed_at",
+        )
+        .order("changed_at", { ascending: false })
+        .limit(limit);
+
+    if (changedBy) {
+        query = query.eq("changed_by_email", changedBy);
+    }
+
+    const { data, error } = await query;
+
+    return {
+        items: (data ?? []) as ReferralStatusHistoryRecord[],
         warning: error?.message,
     };
 }

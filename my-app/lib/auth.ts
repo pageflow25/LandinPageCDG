@@ -3,7 +3,7 @@ import type { User } from "@supabase/supabase-js";
 import { env, getSupabaseConfigMessage, isSupabaseConfigured } from "@/lib/env";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 
-export type AppRole = "admin" | "indicator";
+export type AppRole = "admin" | "comercial" | "indicator";
 
 export interface AuthContext {
     user: User | null;
@@ -17,11 +17,47 @@ function normalizeRole(value: unknown): AppRole | null {
         return "admin";
     }
 
+    if (value === "comercial") {
+        return "comercial";
+    }
+
     if (value === "indicator") {
         return "indicator";
     }
 
     return null;
+}
+
+export function getRoleLabel(role: AppRole | null): string {
+    if (role === "admin") {
+        return "Administrador";
+    }
+
+    if (role === "comercial") {
+        return "Comercial";
+    }
+
+    if (role === "indicator") {
+        return "Indicador";
+    }
+
+    return "Não autenticado";
+}
+
+export function canViewAllReferrals(role: AppRole | null): boolean {
+    return role === "admin" || role === "comercial";
+}
+
+export function canManageUsers(role: AppRole | null): boolean {
+    return role === "admin";
+}
+
+export function canUpdateReferralStatus(role: AppRole | null): boolean {
+    return role === "admin" || role === "comercial";
+}
+
+export function canViewReferralHistory(role: AppRole | null): boolean {
+    return role === "admin";
 }
 
 export function resolveUserRole(user: User | null): AppRole | null {

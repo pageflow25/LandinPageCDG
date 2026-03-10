@@ -16,13 +16,13 @@ const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
 if (!email || !password) {
-  console.error("Uso: npm run seed:user -- email senha \"Nome\" admin|indicator");
+  console.error("Uso: npm run seed:user -- email senha \"Nome\" admin|comercial|indicator");
   console.error("Ou configure DEFAULT_ADMIN_SEED_EMAIL e DEFAULT_ADMIN_SEED_PASSWORD em .env.local.");
   process.exit(1);
 }
 
-if (!["admin", "indicator"].includes(role)) {
-  console.error("Role inválida. Use admin ou indicator.");
+if (!["admin", "comercial", "indicator"].includes(role)) {
+  console.error("Role inválida. Use admin, comercial ou indicator.");
   process.exit(1);
 }
 

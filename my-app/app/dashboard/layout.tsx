@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { signOutAction } from "@/app/auth/login/actions";
-import { getAuthContext } from "@/lib/auth";
+import { canManageUsers, canViewAllReferrals, canViewReferralHistory, getAuthContext, getRoleLabel } from "@/lib/auth";
 
 export default async function DashboardLayout({
     children,
@@ -16,8 +16,16 @@ export default async function DashboardLayout({
 
     const navigation = [
         { href: "/dashboard", label: "Resumo" },
-        { href: "/dashboard/indicacoes", label: "Indicações" },
-        { href: "/dashboard/usuarios", label: "Usuários" },
+        {
+            href: "/dashboard/indicacoes",
+            label: canViewAllReferrals(auth.role) ? "Indicações (Global)" : "Suas indicações",
+        },
+        ...(canManageUsers(auth.role)
+            ? [{ href: "/dashboard/usuarios", label: "Usuários" }]
+            : []),
+        ...(canViewReferralHistory(auth.role)
+            ? [{ href: "/dashboard/auditoria", label: "Auditoria" }]
+            : []),
     ];
 
     return (
@@ -42,11 +50,9 @@ export default async function DashboardLayout({
                             {auth.user?.email || "Modo preparação"}
                         </p>
                         <p className="mt-1 text-sm text-white/65">
-                            {auth.role === "admin"
-                                ? "Administrador"
-                                : auth.role === "indicator"
-                                  ? "Indicador"
-                                  : auth.warning || "Supabase pendente de configuração"}
+                            {auth.role
+                                ? getRoleLabel(auth.role)
+                                : auth.warning || "Supabase pendente de configuração"}
                         </p>
                     </div>
 

@@ -1,5 +1,6 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { createServerClient } from "@supabase/ssr";
+import { resolveUserRole } from "@/lib/auth";
 import { env, isSupabaseConfigured } from "@/lib/env";
 
 export async function middleware(request: NextRequest) {
@@ -39,6 +40,13 @@ export async function middleware(request: NextRequest) {
         const loginUrl = request.nextUrl.clone();
         loginUrl.pathname = "/auth/login";
         loginUrl.searchParams.set("next", pathname);
+        return NextResponse.redirect(loginUrl);
+    }
+
+    if (isDashboardRoute && user && !resolveUserRole(user)) {
+        const loginUrl = request.nextUrl.clone();
+        loginUrl.pathname = "/auth/login";
+        loginUrl.searchParams.set("error", "Role de acesso inválida para o CRM.");
         return NextResponse.redirect(loginUrl);
     }
 

@@ -10,6 +10,7 @@ function formatDate(value: string) {
 
 export default async function DashboardPage() {
     const snapshot = await getDashboardSnapshot();
+    const isIndicator = snapshot.role === "indicator";
 
     const cards = [
         {
@@ -24,10 +25,14 @@ export default async function DashboardPage() {
             label: "Convertidas",
             value: snapshot.convertedReferrals,
         },
-        {
-            label: "Usuários",
-            value: snapshot.usersCount,
-        },
+        ...(isIndicator
+            ? []
+            : [
+                  {
+                      label: "Usuários",
+                      value: snapshot.usersCount,
+                  },
+              ]),
     ];
 
     return (
@@ -39,11 +44,12 @@ export default async function DashboardPage() {
                 <div className="mt-4 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
                     <div>
                         <h2 className="font-primaria text-3xl font-bold text-azul-escuro">
-                            Painel da campanha
+                            {isIndicator ? "Seu painel de indicações" : "Painel da campanha"}
                         </h2>
                         <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-600">
-                            Estrutura inicial do CRM conectada à landing page, preparada para
-                            operar com Supabase como base principal e Google Sheets como espelho.
+                            {isIndicator
+                                ? "Acompanhe o andamento das suas indicações e veja os registros mais recentes em um fluxo simples de leitura."
+                                : "Estrutura inicial do CRM conectada à landing page, preparada para operar com Supabase como base principal e Google Sheets como espelho."}
                         </p>
                     </div>
                     <div className="rounded-3xl bg-slate-50 px-5 py-4 text-sm text-slate-600">
@@ -71,7 +77,7 @@ export default async function DashboardPage() {
                 ))}
             </div>
 
-            <div className="grid gap-6 xl:grid-cols-[1.2fr_0.8fr]">
+            <div>
                 <section className="rounded-[2rem] bg-white p-6 shadow-sm">
                     <div className="flex items-center justify-between gap-4">
                         <div>
@@ -118,27 +124,6 @@ export default async function DashboardPage() {
                                 </div>
                             </article>
                         ))}
-                    </div>
-                </section>
-
-                <section className="rounded-[2rem] bg-white p-6 shadow-sm">
-                    <p className="text-sm uppercase tracking-[0.24em] text-azul-principal/60">
-                        Próximos passos
-                    </p>
-                    <h3 className="font-primaria mt-2 text-2xl font-bold text-azul-escuro">
-                        Sequência recomendada
-                    </h3>
-
-                    <div className="mt-5 space-y-4 text-sm leading-6 text-slate-600">
-                        <div className="rounded-3xl bg-slate-50 p-4">
-                            Atualizar .env.local com as credenciais reais do projeto no Supabase.
-                        </div>
-                        <div className="rounded-3xl bg-slate-50 p-4">
-                            Rodar o script de seed para criar os primeiros usuários com role.
-                        </div>
-                        <div className="rounded-3xl bg-slate-50 p-4">
-                            Aplicar a migration final para liberar tabelas, constraints e policies.
-                        </div>
                     </div>
                 </section>
             </div>

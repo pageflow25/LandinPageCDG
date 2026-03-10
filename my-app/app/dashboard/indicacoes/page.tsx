@@ -1,4 +1,30 @@
+import { canUpdateReferralStatus, canViewAllReferrals } from "@/lib/auth";
+import ReferralStatusEditor from "@/components/dashboard/ReferralStatusEditor";
 import { getReferralList } from "@/lib/crm";
+
+const STATUS_LABELS: Record<string, string> = {
+    pending: "Pendente",
+    contacted: "Contactado",
+    converted: "Convertido",
+    rejected: "Rejeitado",
+};
+
+const STATUS_CLASSES: Record<string, string> = {
+    pending: "bg-amber-100 text-amber-800",
+    contacted: "bg-blue-100 text-blue-800",
+    converted: "bg-green-100 text-green-800",
+    rejected: "bg-red-100 text-red-800",
+};
+
+function StatusBadge({ status }: { status: string }) {
+    const label = STATUS_LABELS[status] ?? status;
+    const cls = STATUS_CLASSES[status] ?? "bg-slate-100 text-slate-700";
+    return (
+        <span className={`inline-block rounded-full px-3 py-1 text-xs font-semibold ${cls}`}>
+            {label}
+        </span>
+    );
+}
 
 function formatDate(value: string) {
     return new Intl.DateTimeFormat("pt-BR", {
@@ -17,7 +43,7 @@ export default async function IndicacoesPage() {
                     Indicações
                 </p>
                 <h2 className="font-primaria mt-2 text-3xl font-bold text-azul-escuro">
-                    {role === "admin"
+                    {canViewAllReferrals(role)
                         ? "Base operacional da campanha"
                         : "Suas indicações registradas"}
                 </h2>
@@ -44,12 +70,15 @@ export default async function IndicacoesPage() {
                                 <th className="px-5 py-4 font-medium">Indicador</th>
                                 <th className="px-5 py-4 font-medium">Status</th>
                                 <th className="px-5 py-4 font-medium">Criado em</th>
+                                {canUpdateReferralStatus(role) && (
+                                    <th className="px-5 py-4 font-medium">Ações</th>
+                                )}
                             </tr>
                         </thead>
                         <tbody>
                             {items.length === 0 && (
                                 <tr>
-                                    <td className="px-5 py-8 text-sm text-slate-500" colSpan={5}>
+                                    <td className="px-5 py-8 text-sm text-slate-500" colSpan={canUpdateReferralStatus(role) ? 6 : 5}>
                                         Nenhuma indicação disponível ainda.
                                     </td>
                                 </tr>
@@ -72,10 +101,20 @@ export default async function IndicacoesPage() {
                                         </p>
                                         <p className="text-slate-500">{item.affiliate_email}</p>
                                     </td>
-                                    <td className="px-5 py-4 text-slate-600">{item.status}</td>
+                                    <td className="px-5 py-4 text-slate-600">
+                                        <StatusBadge status={item.status} />
+                                    </td>
                                     <td className="px-5 py-4 text-slate-600">
                                         {formatDate(item.created_at)}
                                     </td>
+                                    {canUpdateReferralStatus(role) && (
+                                        <td className="px-5 py-4">
+                                            <ReferralStatusEditor
+                                                referralId={item.id}
+                                                currentStatus={item.status}
+                                            />
+                                        </td>
+                                    )}
                                 </tr>
                             ))}
                         </tbody>

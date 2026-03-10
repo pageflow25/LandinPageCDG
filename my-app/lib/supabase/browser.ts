@@ -2,12 +2,13 @@
 
 import { createBrowserClient } from "@supabase/ssr";
 import { env } from "@/lib/env";
+import type { Database } from "@/lib/supabase/types";
 
-let browserClient: ReturnType<typeof createBrowserClient> | undefined;
+let browserClient: ReturnType<typeof createBrowserClient<Database>> | undefined;
 
 export function getBrowserSupabaseClient() {
     if (!browserClient) {
-        browserClient = createBrowserClient(
+        browserClient = createBrowserClient<Database>(
             env.supabaseUrl,
             env.supabaseAnonKey,
         );
