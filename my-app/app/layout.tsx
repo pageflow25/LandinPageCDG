@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import { AosProvider } from "@/components/AosProvider";
 import "./globals.css";
 
 /**
@@ -51,8 +52,6 @@ export const metadata: Metadata = {
     type: "website",
   },
 };
-
-import { AosProvider } from "@/components/AosProvider";
 
 export default function RootLayout({
   children,

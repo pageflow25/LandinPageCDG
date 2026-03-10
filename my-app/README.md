@@ -1,4 +1,6 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## Educação ComVida
+
+Landing page em Next.js para captação de leads por indicação, com persistência preparada para Supabase, espelhamento em Google Sheets e notificações por e-mail.
 
 ## Getting Started
 
@@ -16,21 +18,59 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Environment
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Copie `.env.example` para `.env.local` e ajuste quando tiver o projeto Supabase real.
 
-## Learn More
+Enquanto as variáveis do Supabase estiverem com placeholders, o app:
 
-To learn more about Next.js, take a look at the following resources:
+- mantém o formulário público funcionando
+- continua enviando para Google Sheets e e-mail
+- exibe a estrutura do micro CRM em modo de preparação
+- não autentica usuários de verdade
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Variáveis principais
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- `NEXT_PUBLIC_SUPABASE_URL`
+- `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+- `SUPABASE_SERVICE_ROLE_KEY`
+- `DEFAULT_ADMIN_EMAILS`
+- `DEFAULT_CAMPAIGN_SLUG`
+- `SMTP_HOST`
+- `SMTP_PORT`
+- `SMTP_USER`
+- `SMTP_PASS`
+- `SMTP_FROM_NAME`
 
-## Deploy on Vercel
+## Micro CRM
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Rotas preparadas:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `/auth/login`
+- `/dashboard`
+- `/dashboard/indicacoes`
+- `/dashboard/usuarios`
+
+O fluxo foi preparado para duas roles:
+
+- `admin`
+- `indicator`
+
+Antes da migration final, a role pode ser resolvida por `app_metadata.role`, `user_metadata.role` ou pela lista de e-mails em `DEFAULT_ADMIN_EMAILS`.
+
+## Seed local de usuários
+
+Quando o Supabase estiver disponível, você poderá criar usuários locais por terminal com:
+
+```bash
+npm run seed:user -- email@dominio.com senha-forte "Nome da Pessoa" admin
+```
+
+Roles suportadas pelo script:
+
+- `admin`
+- `indicator`
+
+## Migration
+
+A migration inicial foi deixada para o final da implementação, em `supabase/migrations`.

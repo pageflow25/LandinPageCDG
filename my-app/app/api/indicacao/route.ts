@@ -1,7 +1,10 @@
-import { NextRequest, NextResponse } from "next/server";
+import { after, NextRequest, NextResponse } from "next/server";
 import { indicacaoSchema } from "@/schemas/indicacao.schema";
 import { enviarIndicacao } from "@/services/google-sheets.service";
 import { enviarEmailsIndicacao } from "@/services/email.service";
+import { persistReferral } from "@/services/referral-persistence.service";
+
+export const runtime = "nodejs";
 
 /**
  * API Route - Indicação
@@ -29,17 +32,34 @@ export async function POST(request: NextRequest) {
             );
         }
 
-        // Envia para Google Apps Script (fluxo principal)
+        const persistence = await persistReferral(result.data).catch((error) => {
+            console.error("[SUPABASE] Erro ao persistir indicação:", error);
+
+            return {
+                mode: "failed" as const,
+                warning:
+                    error instanceof Error
+                        ? error.message
+                        : "Falha ao persistir a indicação no CRM.",
+            };
+        });
+
+        // Google Sheets segue como espelho operacional
         await enviarIndicacao(result.data);
 
-        // Dispara e-mails em background — falhas não bloqueiam a resposta
-        enviarEmailsIndicacao(result.data).catch((error) => {
-            console.error("[EMAIL] Erro ao disparar e-mails:", error);
+        // Agenda o envio após a resposta, sem depender de promise solta.
+        after(async () => {
+            try {
+                await enviarEmailsIndicacao(result.data);
+            } catch (error) {
+                console.error("[EMAIL] Erro ao disparar e-mails:", error);
+            }
         });
 
         return NextResponse.json({
             success: true,
             message: "Indicação registrada com sucesso",
+            persistence,
         });
     } catch (error) {
         console.error("[INDICAÇÃO] Erro ao processar:", error);
