@@ -1,16 +1,19 @@
 import nodemailer from "nodemailer";
+import { env } from "@/lib/env";
 import type { IndicacaoPayload } from "@/schemas/indicacao.schema";
 import { gerarEmailAgradecimento } from "@/lib/email-templates/agradecimento.template";
 import { gerarEmailNotificacao } from "@/lib/email-templates/notificacao.template";
+import { gerarEmailNotificacaoInterna } from "@/lib/email-templates/notificacao-interna.template";
 
 /**
  * Service — Envio de E-mails via SMTP
  *
  * Responsabilidade única: enviar os e-mails de indicação
- * (agradecimento ao indicado + notificação ao afiliado).
+ * (agradecimento ao indicado + notificação ao afiliado + notificação interna).
  *
  * Configuração via variáveis de ambiente:
- * SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS, SMTP_FROM_NAME
+ * SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS, SMTP_FROM_NAME,
+ * INTERNAL_NOTIFICATION_EMAILS
  */
 
 function getSmtpConfig() {
@@ -60,37 +63,57 @@ export async function enviarEmailsIndicacao(
     const transporter = criarTransporter();
     const remetente = getRemetente();
 
-    const emailAgradecimento = transporter.sendMail({
-        from: remetente,
-        to: payload.indicado.email,
-        subject: "Bem-vindo(a) ao Educação ComVida! 🎓",
-        html: gerarEmailAgradecimento({
-            nomeIndicado: payload.indicado.nome,
-            nomeAfiliado: payload.afiliado.nome,
-        }),
-    });
+    const envios = [
+        {
+            label: "indicado",
+            promise: transporter.sendMail({
+                from: remetente,
+                to: payload.indicado.email,
+                subject: "Bem-vindo(a) ao Educação ComVida! 🎓",
+                html: gerarEmailAgradecimento({
+                    nomeIndicado: payload.indicado.nome,
+                    nomeAfiliado: payload.afiliado.nome,
+                }),
+            }),
+        },
+        {
+            label: "afiliado",
+            promise: transporter.sendMail({
+                from: remetente,
+                to: payload.afiliado.email,
+                subject: "Sua indicação foi registrada com sucesso! ✅",
+                html: gerarEmailNotificacao({
+                    nomeAfiliado: payload.afiliado.nome,
+                    nomeIndicado: payload.indicado.nome,
+                }),
+            }),
+        },
+        {
+            label: "equipe-interna",
+            promise: transporter.sendMail({
+                from: remetente,
+                to: env.internalNotificationEmails,
+                subject: `Nova indicação recebida: ${payload.indicado.nome}`,
+                html: gerarEmailNotificacaoInterna({
+                    nomeAfiliado: payload.afiliado.nome,
+                    emailAfiliado: payload.afiliado.email,
+                    telefoneAfiliado: payload.afiliado.telefone,
+                    nomeIndicado: payload.indicado.nome,
+                    emailIndicado: payload.indicado.email,
+                    telefoneIndicado: payload.indicado.telefone,
+                }),
+            }),
+        },
+    ];
 
-    const emailNotificacao = transporter.sendMail({
-        from: remetente,
-        to: payload.afiliado.email,
-        subject: "Sua indicação foi registrada com sucesso! ✅",
-        html: gerarEmailNotificacao({
-            nomeAfiliado: payload.afiliado.nome,
-            nomeIndicado: payload.indicado.nome,
-        }),
-    });
-
-    // Envia ambos em paralelo — falhas não devem impedir o fluxo principal
-    const resultados = await Promise.allSettled([
-        emailAgradecimento,
-        emailNotificacao,
-    ]);
+    const resultados = await Promise.allSettled(
+        envios.map((envio) => envio.promise),
+    );
 
     resultados.forEach((resultado, index) => {
         if (resultado.status === "rejected") {
-            const destinatario = index === 0 ? "indicado" : "afiliado";
             console.error(
-                `[EMAIL] Falha ao enviar para ${destinatario}:`,
+                `[EMAIL] Falha ao enviar para ${envios[index]?.label || "desconhecido"}:`,
                 resultado.reason,
             );
         }

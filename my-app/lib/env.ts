@@ -2,6 +2,18 @@ const PLACEHOLDER_SUPABASE_URL = "https://your-project.supabase.co";
 const PLACEHOLDER_SUPABASE_ANON_KEY = "your-anon-key";
 const PLACEHOLDER_SUPABASE_SERVICE_ROLE_KEY = "your-service-role-key";
 
+const DEFAULT_INTERNAL_NOTIFICATION_EMAILS = [
+    "marketing@lojacriarmais.com",
+    "francisco@casadagrafica.com",
+    "bruno@casadagrafica.com",
+    "casadagrafica@gmail.com",
+    "fran@casadagrafica.com",
+    "kauann@casadagrafica.com",
+    "douglas@casadagrafica.com",
+    "michel@casadagrafica.com",
+    "jessica@casadagrafica.com",
+];
+
 function readEnv(name: string, fallback = ""): string {
     return process.env[name]?.trim() || fallback;
 }
@@ -35,6 +47,12 @@ export const env = {
         "educacao-comvida-2026",
     ),
     defaultAdminEmails: readCsvEnv("DEFAULT_ADMIN_EMAILS"),
+    internalNotificationEmails: (() => {
+        const recipients = readCsvEnv("INTERNAL_NOTIFICATION_EMAILS");
+        return recipients.length > 0
+            ? recipients
+            : DEFAULT_INTERNAL_NOTIFICATION_EMAILS;
+    })(),
 };
 
 export function isSupabaseConfigured(): boolean {

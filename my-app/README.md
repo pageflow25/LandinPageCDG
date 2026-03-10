@@ -35,12 +35,15 @@ Enquanto as variáveis do Supabase estiverem com placeholders, o app:
 - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
 - `SUPABASE_SERVICE_ROLE_KEY`
 - `DEFAULT_ADMIN_EMAILS`
+- `INTERNAL_NOTIFICATION_EMAILS`
 - `DEFAULT_CAMPAIGN_SLUG`
 - `SMTP_HOST`
 - `SMTP_PORT`
 - `SMTP_USER`
 - `SMTP_PASS`
 - `SMTP_FROM_NAME`
+
+`INTERNAL_NOTIFICATION_EMAILS` deve ser informado como CSV quando você quiser sobrescrever a lista padrão usada para a equipe interna.
 
 ## Micro CRM
 
