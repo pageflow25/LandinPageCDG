@@ -4,7 +4,7 @@ import { z } from "zod";
  * Schema de validação para indicação
  *
  * Formato esperado pelo Google Apps Script:
- * { afiliado: { nome, email, telefone }, indicado: { nome, telefone } }
+ * { afiliado: { nome, email, telefone }, indicado: { nome, telefone }, comercialId? }
  */
 
 const afiliadoSchema = z.object({
@@ -18,7 +18,6 @@ const afiliadoSchema = z.object({
 
 const indicadoSchema = z.object({
     nome: z.string().min(2, "Nome deve ter ao menos 2 caracteres"),
-    email: z.string().email("E-mail inválido"),
     telefone: z
         .string()
         .min(10, "Telefone deve ter ao menos 10 dígitos")
@@ -28,6 +27,8 @@ const indicadoSchema = z.object({
 export const indicacaoSchema = z.object({
     afiliado: afiliadoSchema,
     indicado: indicadoSchema,
+    comercialId: z.string().uuid().nullable().optional(),
+    comercialNome: z.string().nullable().optional(),
 });
 
 export type IndicacaoPayload = z.infer<typeof indicacaoSchema>;

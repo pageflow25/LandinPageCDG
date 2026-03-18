@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, FormEvent, ChangeEvent } from "react";
+import { useState, useEffect, FormEvent, ChangeEvent } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 
@@ -8,7 +8,8 @@ import Image from "next/image";
  * ReferralForm - Formulário de indicação
  *
  * Responsabilidades:
- * - Coletar nome, e-mail e telefone do afiliado e nome/telefone do indicado
+ * - Coletar nome, e-mail e telefone do afiliado e nome e telefone do indicado
+ * - Permitir seleção do consultor comercial responsável
  * - Montar payload no formato esperado pela API
  * - Submeter para API route
  * - Redirecionar para página de agradecimento
@@ -22,14 +23,22 @@ import Image from "next/image";
 const IMAGEM_INSCRICAO =
     "https://ik.imagekit.io/pageflow/Educa%C3%A7%C3%A3o-ComVida/Mo%C3%A7a%20com%20o%20Borrado.png";
 
+// Tipo do comercial retornado pela API
+interface ComercialOption {
+    id: string;
+    full_name: string | null;
+    email: string;
+}
+
 // Estado do formulário
 interface FormData {
     nomeAfiliado: string;
     emailAfiliado: string;
     telefoneAfiliado: string;
     nomeIndicado: string;
-    emailIndicado: string;
     telefoneIndicado: string;
+    comercialId: string;
+    comercialNome: string;
 }
 
 const INITIAL_FORM_DATA: FormData = {
@@ -37,8 +46,9 @@ const INITIAL_FORM_DATA: FormData = {
     emailAfiliado: "",
     telefoneAfiliado: "",
     nomeIndicado: "",
-    emailIndicado: "",
     telefoneIndicado: "",
+    comercialId: "",
+    comercialNome: "",
 };
 
 export function ReferralForm() {
@@ -47,10 +57,41 @@ export function ReferralForm() {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [error, setError] = useState<string | null>(null);
 
-    // Handler para atualizar campos
+    // Estado para comerciais
+    const [comerciais, setComerciais] = useState<ComercialOption[]>([]);
+    const [loadingComerciais, setLoadingComerciais] = useState(true);
+
+    // Buscar comerciais ao montar o componente
+    useEffect(() => {
+        async function fetchComerciais() {
+            try {
+                const response = await fetch("/api/comerciais");
+                const data = await response.json();
+                setComerciais(data.items ?? []);
+            } catch (err) {
+                console.error("Erro ao carregar comerciais:", err);
+            } finally {
+                setLoadingComerciais(false);
+            }
+        }
+
+        fetchComerciais();
+    }, []);
+
+    // Handler para atualizar campos de input
     function handleChange(e: ChangeEvent<HTMLInputElement>) {
         const { name, value } = e.target;
         setFormData((prev) => ({ ...prev, [name]: value }));
+        setError(null);
+    }
+
+    // Handler para atualizar select do comercial — salva id e nome
+    function handleComercialChange(e: ChangeEvent<HTMLSelectElement>) {
+        const selectedId = e.target.value;
+        const selectedName = comerciais.find((c) => c.id === selectedId)?.full_name
+            ?? comerciais.find((c) => c.id === selectedId)?.email
+            ?? "";
+        setFormData((prev) => ({ ...prev, comercialId: selectedId, comercialNome: selectedName }));
         setError(null);
     }
 
@@ -69,9 +110,10 @@ export function ReferralForm() {
                 },
                 indicado: {
                     nome: formData.nomeIndicado,
-                    email: formData.emailIndicado,
                     telefone: formData.telefoneIndicado,
                 },
+                comercialId: formData.comercialId || null,
+                comercialNome: formData.comercialNome || null,
             };
 
             const response = await fetch("/api/indicacao", {
@@ -231,25 +273,6 @@ export function ReferralForm() {
 
                                         <div>
                                             <label
-                                                htmlFor="emailIndicado"
-                                                className="block text-sm font-medium text-texto-secundario mb-1"
-                                            >
-                                                E-mail do indicado
-                                            </label>
-                                            <input
-                                                type="email"
-                                                id="emailIndicado"
-                                                name="emailIndicado"
-                                                value={formData.emailIndicado}
-                                                onChange={handleChange}
-                                                required
-                                                className="w-full px-4 py-3 rounded-lg border border-cinza-leve focus:border-azul-principal focus:ring-2 focus:ring-azul-principal/20 outline-none transition-all"
-                                                placeholder="email@doindicado.com"
-                                            />
-                                        </div>
-
-                                        <div>
-                                            <label
                                                 htmlFor="telefoneIndicado"
                                                 className="block text-sm font-medium text-texto-secundario mb-1"
                                             >
@@ -266,6 +289,42 @@ export function ReferralForm() {
                                                 placeholder="(00) 00000-0000"
                                             />
                                         </div>
+                                    </div>
+                                </fieldset>
+
+                                {/* Divisor visual */}
+                                <hr className="border-cinza-leve mb-6" />
+
+                                {/* Seção Comercial */}
+                                <fieldset className="mb-6">
+                                    <legend className="font-primaria text-lg font-semibold text-azul-escuro mb-4">
+                                        Consultor responsável
+                                    </legend>
+
+                                    <div>
+                                        <label
+                                            htmlFor="comercialId"
+                                            className="block text-sm font-medium text-texto-secundario mb-1"
+                                        >
+                                            Selecione seu consultor
+                                        </label>
+                                        <select
+                                            id="comercialId"
+                                            name="comercialId"
+                                            value={formData.comercialId}
+                                            onChange={handleComercialChange}
+                                            disabled={loadingComerciais}
+                                            className="w-full px-4 py-3 rounded-lg border border-cinza-leve focus:border-azul-principal focus:ring-2 focus:ring-azul-principal/20 outline-none transition-all bg-white"
+                                        >
+                                            <option value="">
+                                                {loadingComerciais ? "Carregando..." : "Selecione um consultor"}
+                                            </option>
+                                            {comerciais.map((comercial) => (
+                                                <option key={comercial.id} value={comercial.id}>
+                                                    {comercial.full_name || comercial.email}
+                                                </option>
+                                            ))}
+                                        </select>
                                     </div>
                                 </fieldset>
 

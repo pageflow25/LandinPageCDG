@@ -14,10 +14,13 @@ export interface ReferralRecord {
     affiliate_name: string;
     affiliate_email: string;
     referred_name: string;
-    referred_email: string;
+    referred_email: string | null;
     referred_phone: string;
     status: string;
     created_at: string;
+    comercial_profile_id: string | null;
+    comercial_name: string | null;
+    comercial_email: string | null;
 }
 
 export interface ProfileRecord {
@@ -93,7 +96,8 @@ export async function getDashboardSnapshot(): Promise<DashboardSnapshot> {
     let referralsQuery = supabase
         .from("referrals")
         .select(
-            "id, affiliate_name, affiliate_email, referred_name, referred_email, referred_phone, status, created_at",
+            `id, affiliate_name, affiliate_email, referred_name, referred_email, referred_phone, status, created_at, comercial_profile_id,
+            comercial:profiles!comercial_profile_id(full_name, email)`,
         )
         .order("created_at", { ascending: false })
         .limit(50);
@@ -118,7 +122,25 @@ export async function getDashboardSnapshot(): Promise<DashboardSnapshot> {
         };
     }
 
-    const records = sortByCreatedAt((referrals ?? []) as ReferralRecord[]);
+    // Transformar dados para incluir comercial_name e comercial_email
+    const transformedReferrals = (referrals ?? []).map((item) => {
+        const comercial = item.comercial as { full_name: string | null; email: string } | null;
+        return {
+            id: item.id,
+            affiliate_name: item.affiliate_name,
+            affiliate_email: item.affiliate_email,
+            referred_name: item.referred_name,
+            referred_email: item.referred_email,
+            referred_phone: item.referred_phone,
+            status: item.status,
+            created_at: item.created_at,
+            comercial_profile_id: item.comercial_profile_id,
+            comercial_name: comercial?.full_name ?? null,
+            comercial_email: comercial?.email ?? null,
+        };
+    });
+
+    const records = sortByCreatedAt(transformedReferrals);
     const pendingReferrals = records.filter(
         (referral) => referral.status === "pending",
     ).length;
@@ -171,7 +193,8 @@ export async function getReferralList(limit = 50) {
     let query = supabase
         .from("referrals")
         .select(
-            "id, affiliate_name, affiliate_email, referred_name, referred_email, referred_phone, status, created_at",
+            `id, affiliate_name, affiliate_email, referred_name, referred_email, referred_phone, status, created_at, comercial_profile_id,
+            comercial:profiles!comercial_profile_id(full_name, email)`,
         )
         .order("created_at", { ascending: false })
         .limit(limit);
@@ -182,8 +205,26 @@ export async function getReferralList(limit = 50) {
 
     const { data, error } = await query;
 
+    // Transformar dados para incluir comercial_name e comercial_email
+    const items = (data ?? []).map((item) => {
+        const comercial = item.comercial as { full_name: string | null; email: string } | null;
+        return {
+            id: item.id,
+            affiliate_name: item.affiliate_name,
+            affiliate_email: item.affiliate_email,
+            referred_name: item.referred_name,
+            referred_email: item.referred_email,
+            referred_phone: item.referred_phone,
+            status: item.status,
+            created_at: item.created_at,
+            comercial_profile_id: item.comercial_profile_id,
+            comercial_name: comercial?.full_name ?? null,
+            comercial_email: comercial?.email ?? null,
+        };
+    });
+
     return {
-        items: (data ?? []) as ReferralRecord[],
+        items,
         warning: error?.message,
         role: auth.role,
     };

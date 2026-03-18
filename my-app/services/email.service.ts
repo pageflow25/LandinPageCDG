@@ -1,7 +1,6 @@
 import nodemailer from "nodemailer";
 import { env } from "@/lib/env";
 import type { IndicacaoPayload } from "@/schemas/indicacao.schema";
-import { gerarEmailAgradecimento } from "@/lib/email-templates/agradecimento.template";
 import { gerarEmailNotificacao } from "@/lib/email-templates/notificacao.template";
 import { gerarEmailNotificacaoInterna } from "@/lib/email-templates/notificacao-interna.template";
 
@@ -9,7 +8,7 @@ import { gerarEmailNotificacaoInterna } from "@/lib/email-templates/notificacao-
  * Service — Envio de E-mails via SMTP
  *
  * Responsabilidade única: enviar os e-mails de indicação
- * (agradecimento ao indicado + notificação ao afiliado + notificação interna).
+ * (notificação ao afiliado + notificação interna).
  *
  * Configuração via variáveis de ambiente:
  * SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS, SMTP_FROM_NAME,
@@ -65,26 +64,15 @@ export async function enviarEmailsIndicacao(
 
     const envios = [
         {
-            label: "indicado",
-            promise: transporter.sendMail({
-                from: remetente,
-                to: payload.indicado.email,
-                subject: "Bem-vindo(a) ao Educação ComVida! 🎓",
-                html: gerarEmailAgradecimento({
-                    nomeIndicado: payload.indicado.nome,
-                    nomeAfiliado: payload.afiliado.nome,
-                }),
-            }),
-        },
-        {
             label: "afiliado",
             promise: transporter.sendMail({
                 from: remetente,
                 to: payload.afiliado.email,
-                subject: "Sua indicação foi registrada com sucesso! ✅",
+                subject: "Obrigado pela indicação!",
                 html: gerarEmailNotificacao({
                     nomeAfiliado: payload.afiliado.nome,
                     nomeIndicado: payload.indicado.nome,
+                    linkIndicacao: env.appUrl,
                 }),
             }),
         },
@@ -99,7 +87,6 @@ export async function enviarEmailsIndicacao(
                     emailAfiliado: payload.afiliado.email,
                     telefoneAfiliado: payload.afiliado.telefone,
                     nomeIndicado: payload.indicado.nome,
-                    emailIndicado: payload.indicado.email,
                     telefoneIndicado: payload.indicado.telefone,
                 }),
             }),

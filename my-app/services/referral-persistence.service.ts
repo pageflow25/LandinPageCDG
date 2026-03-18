@@ -25,8 +25,9 @@ function buildReferralInsert(payload: IndicacaoPayload) {
         affiliate_email: payload.afiliado.email,
         affiliate_phone: payload.afiliado.telefone,
         referred_name: payload.indicado.nome,
-        referred_email: payload.indicado.email,
+        referred_email: null,
         referred_phone: payload.indicado.telefone,
+        comercial_profile_id: payload.comercialId ?? null,
         payload_snapshot: payload,
     };
 }

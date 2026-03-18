@@ -91,8 +91,9 @@ export type Database = {
                     affiliate_email: string;
                     affiliate_phone: string;
                     referred_name: string;
-                    referred_email: string;
+                    referred_email: string | null;
                     referred_phone: string;
+                    comercial_profile_id: string | null;
                     payload_snapshot: Json | null;
                     created_at: string;
                     updated_at: string;
@@ -108,8 +109,9 @@ export type Database = {
                     affiliate_email: string;
                     affiliate_phone: string;
                     referred_name: string;
-                    referred_email: string;
+                    referred_email: string | null;
                     referred_phone: string;
+                    comercial_profile_id?: string | null;
                     payload_snapshot?: Json | null;
                     created_at?: string;
                     updated_at?: string;
@@ -127,6 +129,7 @@ export type Database = {
                     referred_name?: string;
                     referred_email?: string;
                     referred_phone?: string;
+                    comercial_profile_id?: string | null;
                     payload_snapshot?: Json | null;
                     created_at?: string;
                     updated_at?: string;
@@ -144,6 +147,13 @@ export type Database = {
                         columns: ["campaign_id"];
                         isOneToOne: false;
                         referencedRelation: "campaigns";
+                        referencedColumns: ["id"];
+                    },
+                    {
+                        foreignKeyName: "referrals_comercial_profile_id_fkey";
+                        columns: ["comercial_profile_id"];
+                        isOneToOne: false;
+                        referencedRelation: "profiles";
                         referencedColumns: ["id"];
                     },
                 ];

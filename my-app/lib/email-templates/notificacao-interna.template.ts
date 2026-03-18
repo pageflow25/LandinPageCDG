@@ -10,7 +10,6 @@ interface NotificacaoInternaParams {
     emailAfiliado: string;
     telefoneAfiliado: string;
     nomeIndicado: string;
-    emailIndicado: string;
     telefoneIndicado: string;
 }
 
@@ -19,7 +18,6 @@ export function gerarEmailNotificacaoInterna({
     emailAfiliado,
     telefoneAfiliado,
     nomeIndicado,
-    emailIndicado,
     telefoneIndicado,
 }: NotificacaoInternaParams): string {
     return `
@@ -72,7 +70,6 @@ export function gerarEmailNotificacaoInterna({
                                     <td style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 20px;">
                                         <h3 style="color: #0B284F; font-size: 16px; margin: 0 0 12px;">Dados do indicado</h3>
                                         <p style="color: #334155; font-size: 14px; margin: 0 0 8px;"><strong>Nome:</strong> ${nomeIndicado}</p>
-                                        <p style="color: #334155; font-size: 14px; margin: 0 0 8px;"><strong>E-mail:</strong> ${emailIndicado}</p>
                                         <p style="color: #334155; font-size: 14px; margin: 0;"><strong>Telefone:</strong> ${telefoneIndicado}</p>
                                     </td>
                                 </tr>

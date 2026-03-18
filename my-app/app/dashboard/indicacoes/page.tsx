@@ -68,6 +68,7 @@ export default async function IndicacoesPage() {
                                 <th className="px-5 py-4 font-medium">Indicado</th>
                                 <th className="px-5 py-4 font-medium">Contato</th>
                                 <th className="px-5 py-4 font-medium">Indicador</th>
+                                <th className="px-5 py-4 font-medium">Comercial</th>
                                 <th className="px-5 py-4 font-medium">Status</th>
                                 <th className="px-5 py-4 font-medium">Criado em</th>
                                 {canUpdateReferralStatus(role) && (
@@ -78,7 +79,7 @@ export default async function IndicacoesPage() {
                         <tbody>
                             {items.length === 0 && (
                                 <tr>
-                                    <td className="px-5 py-8 text-sm text-slate-500" colSpan={canUpdateReferralStatus(role) ? 6 : 5}>
+                                    <td className="px-5 py-8 text-sm text-slate-500" colSpan={canUpdateReferralStatus(role) ? 7 : 6}>
                                         Nenhuma indicação disponível ainda.
                                     </td>
                                 </tr>
@@ -90,7 +91,6 @@ export default async function IndicacoesPage() {
                                         <p className="font-semibold text-azul-escuro">
                                             {item.referred_name}
                                         </p>
-                                        <p className="text-slate-500">{item.referred_email}</p>
                                     </td>
                                     <td className="px-5 py-4 text-slate-600">
                                         {item.referred_phone}
@@ -100,6 +100,20 @@ export default async function IndicacoesPage() {
                                             {item.affiliate_name}
                                         </p>
                                         <p className="text-slate-500">{item.affiliate_email}</p>
+                                    </td>
+                                    <td className="px-5 py-4">
+                                        {item.comercial_name ? (
+                                            <>
+                                                <p className="font-medium text-azul-escuro">
+                                                    {item.comercial_name}
+                                                </p>
+                                                <p className="text-xs text-slate-500">
+                                                    {item.comercial_email}
+                                                </p>
+                                            </>
+                                        ) : (
+                                            <span className="italic text-slate-400">Não atribuído</span>
+                                        )}
                                     </td>
                                     <td className="px-5 py-4 text-slate-600">
                                         <StatusBadge status={item.status} />
