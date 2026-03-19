@@ -3,7 +3,7 @@ import type { User } from "@supabase/supabase-js";
 import { env, getSupabaseConfigMessage, isSupabaseConfigured } from "@/lib/env";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 
-export type AppRole = "admin" | "comercial" | "indicator";
+export type AppRole = "admin" | "comercial" | "supervisor" | "indicator";
 
 export interface AuthContext {
     user: User | null;
@@ -19,6 +19,10 @@ function normalizeRole(value: unknown): AppRole | null {
 
     if (value === "comercial") {
         return "comercial";
+    }
+
+    if (value === "supervisor") {
+        return "supervisor";
     }
 
     if (value === "indicator") {
@@ -37,6 +41,10 @@ export function getRoleLabel(role: AppRole | null): string {
         return "Comercial";
     }
 
+    if (role === "supervisor") {
+        return "Supervisor";
+    }
+
     if (role === "indicator") {
         return "Indicador";
     }
@@ -45,7 +53,7 @@ export function getRoleLabel(role: AppRole | null): string {
 }
 
 export function canViewAllReferrals(role: AppRole | null): boolean {
-    return role === "admin" || role === "comercial";
+    return role === "admin" || role === "comercial" || role === "supervisor";
 }
 
 export function canManageUsers(role: AppRole | null): boolean {
@@ -57,6 +65,10 @@ export function canUpdateReferralStatus(role: AppRole | null): boolean {
 }
 
 export function canViewReferralHistory(role: AppRole | null): boolean {
+    return role === "admin";
+}
+
+export function canDeleteReferral(role: AppRole | null): boolean {
     return role === "admin";
 }
 

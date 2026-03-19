@@ -1,5 +1,6 @@
-import { canUpdateReferralStatus, canViewAllReferrals } from "@/lib/auth";
+import { canUpdateReferralStatus, canDeleteReferral, canViewAllReferrals } from "@/lib/auth";
 import ReferralStatusEditor from "@/components/dashboard/ReferralStatusEditor";
+import ReferralDeleteButton from "@/components/dashboard/ReferralDeleteButton";
 import { getReferralList } from "@/lib/crm";
 
 const STATUS_LABELS: Record<string, string> = {
@@ -123,10 +124,18 @@ export default async function IndicacoesPage() {
                                     </td>
                                     {canUpdateReferralStatus(role) && (
                                         <td className="px-5 py-4">
-                                            <ReferralStatusEditor
-                                                referralId={item.id}
-                                                currentStatus={item.status}
-                                            />
+                                            <div className="flex flex-col gap-2">
+                                                <ReferralStatusEditor
+                                                    referralId={item.id}
+                                                    currentStatus={item.status}
+                                                />
+                                                {canDeleteReferral(role) && (
+                                                    <ReferralDeleteButton
+                                                        referralId={item.id}
+                                                        referredName={item.referred_name}
+                                                    />
+                                                )}
+                                            </div>
                                         </td>
                                     )}
                                 </tr>

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { getDashboardSnapshot } from "@/lib/crm";
+import { canManageUsers } from "@/lib/auth";
 
 function formatDate(value: string) {
     return new Intl.DateTimeFormat("pt-BR", {
@@ -10,7 +11,7 @@ function formatDate(value: string) {
 
 export default async function DashboardPage() {
     const snapshot = await getDashboardSnapshot();
-    const isIndicator = snapshot.role === "indicator";
+    const showUsersCard = canManageUsers(snapshot.role);
 
     const cards = [
         {
@@ -25,14 +26,14 @@ export default async function DashboardPage() {
             label: "Convertidas",
             value: snapshot.convertedReferrals,
         },
-        ...(isIndicator
-            ? []
-            : [
+        ...(showUsersCard
+            ? [
                   {
                       label: "Usuários",
                       value: snapshot.usersCount,
                   },
-              ]),
+              ]
+            : []),
     ];
 
     return (
@@ -44,12 +45,12 @@ export default async function DashboardPage() {
                 <div className="mt-4 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
                     <div>
                         <h2 className="font-primaria text-3xl font-bold text-azul-escuro">
-                            {isIndicator ? "Seu painel de indicações" : "Painel da campanha"}
+                            {showUsersCard ? "Painel da campanha" : "Seu painel de indicações"}
                         </h2>
                         <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-600">
-                            {isIndicator
-                                ? "Acompanhe o andamento das suas indicações e veja os registros mais recentes em um fluxo simples de leitura."
-                                : "Estrutura inicial do CRM conectada à landing page, preparada para operar com Supabase como base principal e Google Sheets como espelho."}
+                            {showUsersCard
+                                ? "Estrutura inicial do CRM conectada à landing page, preparada para operar com Supabase como base principal e Google Sheets como espelho."
+                                : "Acompanhe o andamento das suas indicações e veja os registros mais recentes em um fluxo simples de leitura."}
                         </p>
                     </div>
                     <div className="rounded-3xl bg-slate-50 px-5 py-4 text-sm text-slate-600">

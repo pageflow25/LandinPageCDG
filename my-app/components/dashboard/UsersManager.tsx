@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { useMemo, useState } from "react";
 import type { ProfileRecord } from "@/lib/crm";
 
-type Role = "admin" | "comercial" | "indicator";
+type Role = "admin" | "comercial" | "supervisor" | "indicator";
 
 interface UsersManagerProps {
     items: ProfileRecord[];
@@ -157,6 +157,7 @@ export default function UsersManager({ items }: UsersManagerProps) {
                     >
                         <option value="indicator">indicator</option>
                         <option value="comercial">comercial</option>
+                        <option value="supervisor">supervisor</option>
                         <option value="admin">admin</option>
                     </select>
                 </div>
@@ -221,6 +222,7 @@ export default function UsersManager({ items }: UsersManagerProps) {
                                     >
                                         <option value="indicator">indicator</option>
                                         <option value="comercial">comercial</option>
+                                        <option value="supervisor">supervisor</option>
                                         <option value="admin">admin</option>
                                     </select>
                                 </td>

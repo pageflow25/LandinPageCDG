@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const appRoleValues = ["admin", "comercial", "indicator"] as const;
+export const appRoleValues = ["admin", "comercial", "supervisor", "indicator"] as const;
 
 export const createUserSchema = z.object({
     email: z.string().email("E-mail inválido"),

@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { canUpdateReferralStatus, getAuthContext } from "@/lib/auth";
+import { canUpdateReferralStatus, canDeleteReferral, getAuthContext } from "@/lib/auth";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 import { updateReferralStatusSchema } from "@/schemas/referral-status.schema";
 
@@ -80,5 +80,50 @@ export async function PATCH(
         success: true,
         message: "Status atualizado com sucesso.",
         referral: updatedReferral,
+    });
+}
+
+export async function DELETE(
+    _request: NextRequest,
+    context: { params: Promise<{ id: string }> },
+) {
+    const auth = await getAuthContext();
+
+    if (!auth.isConfigured) {
+        return NextResponse.json({ error: auth.warning || "Supabase não configurado." }, { status: 503 });
+    }
+
+    if (!auth.user || !canDeleteReferral(auth.role)) {
+        return NextResponse.json({ error: "Sem permissão para excluir indicações." }, { status: 403 });
+    }
+
+    const { id } = await context.params;
+    const supabase = await createServerSupabaseClient();
+
+    const { data: referral, error: findError } = await supabase
+        .from("referrals")
+        .select("id")
+        .eq("id", id)
+        .single();
+
+    if (findError || !referral) {
+        return NextResponse.json({ error: "Indicação não encontrada." }, { status: 404 });
+    }
+
+    const { error: deleteError } = await supabase
+        .from("referrals")
+        .delete()
+        .eq("id", id);
+
+    if (deleteError) {
+        return NextResponse.json(
+            { error: "Falha ao excluir indicação.", details: deleteError.message },
+            { status: 500 },
+        );
+    }
+
+    return NextResponse.json({
+        success: true,
+        message: "Indicação excluída com sucesso.",
     });
 }

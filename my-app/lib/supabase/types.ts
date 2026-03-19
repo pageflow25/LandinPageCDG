@@ -54,7 +54,7 @@ export type Database = {
                     id: string;
                     full_name: string | null;
                     email: string;
-                    role: "admin" | "comercial" | "indicator";
+                    role: "admin" | "comercial" | "supervisor" | "indicator";
                     is_active: boolean;
                     created_at: string;
                     updated_at: string;
@@ -63,7 +63,7 @@ export type Database = {
                     id: string;
                     full_name?: string | null;
                     email: string;
-                    role: "admin" | "comercial" | "indicator";
+                    role: "admin" | "comercial" | "supervisor" | "indicator";
                     is_active?: boolean;
                     created_at?: string;
                     updated_at?: string;
