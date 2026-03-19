@@ -11,6 +11,7 @@ interface NotificacaoInternaParams {
     telefoneAfiliado: string;
     nomeIndicado: string;
     telefoneIndicado: string;
+    nomeComercial: string | null;
 }
 
 export function gerarEmailNotificacaoInterna({
@@ -19,6 +20,7 @@ export function gerarEmailNotificacaoInterna({
     telefoneAfiliado,
     nomeIndicado,
     telefoneIndicado,
+    nomeComercial,
 }: NotificacaoInternaParams): string {
     return `
 <!DOCTYPE html>
@@ -64,6 +66,17 @@ export function gerarEmailNotificacaoInterna({
                                     </td>
                                 </tr>
                             </table>
+
+                            ${nomeComercial ? `
+                            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 20px;">
+                                <tr>
+                                    <td style="background-color: #f0f9ff; border: 1px solid #bae6fd; border-radius: 10px; padding: 20px;">
+                                        <h3 style="color: #0B284F; font-size: 16px; margin: 0 0 12px;">Consultor atribuído</h3>
+                                        <p style="color: #334155; font-size: 14px; margin: 0;"><strong>Nome:</strong> ${nomeComercial}</p>
+                                    </td>
+                                </tr>
+                            </table>
+                            ` : ''}
 
                             <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
                                 <tr>

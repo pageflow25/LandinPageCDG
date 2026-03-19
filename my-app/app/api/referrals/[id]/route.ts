@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { canUpdateReferralStatus, canDeleteReferral, getAuthContext } from "@/lib/auth";
+import { canUpdateReferralStatus, canDeleteReferral, canManageUsers, getAuthContext } from "@/lib/auth";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 import { updateReferralStatusSchema } from "@/schemas/referral-status.schema";
 
@@ -15,12 +15,58 @@ export async function PATCH(
         return NextResponse.json({ error: auth.warning || "Supabase não configurado." }, { status: 503 });
     }
 
-    if (!auth.user || !canUpdateReferralStatus(auth.role)) {
-        return NextResponse.json({ error: "Sem permissão para atualizar status da indicação." }, { status: 403 });
+    if (!auth.user) {
+        return NextResponse.json({ error: "Não autenticado." }, { status: 401 });
     }
 
     const { id } = await context.params;
     const body = await request.json().catch(() => null);
+
+    if (!body) {
+        return NextResponse.json({ error: "Payload inválido." }, { status: 400 });
+    }
+
+    const supabase = await createServerSupabaseClient();
+
+    // Atualizar comercial (admin only)
+    if ("comercialId" in body) {
+        if (!canManageUsers(auth.role)) {
+            return NextResponse.json({ error: "Sem permissão para alterar o comercial." }, { status: 403 });
+        }
+
+        const { data: referral, error: findError } = await supabase
+            .from("referrals")
+            .select("id")
+            .eq("id", id)
+            .single();
+
+        if (findError || !referral) {
+            return NextResponse.json({ error: "Indicação não encontrada." }, { status: 404 });
+        }
+
+        const { error: updateError } = await supabase
+            .from("referrals")
+            .update({ comercial_profile_id: body.comercialId ?? null })
+            .eq("id", id);
+
+        if (updateError) {
+            return NextResponse.json(
+                { error: "Falha ao atualizar comercial.", details: updateError.message },
+                { status: 500 },
+            );
+        }
+
+        return NextResponse.json({
+            success: true,
+            message: "Comercial atualizado com sucesso.",
+        });
+    }
+
+    // Atualizar status (admin + comercial)
+    if (!canUpdateReferralStatus(auth.role)) {
+        return NextResponse.json({ error: "Sem permissão para atualizar status da indicação." }, { status: 403 });
+    }
+
     const parsed = updateReferralStatusSchema.safeParse(body);
 
     if (!parsed.success) {
@@ -30,7 +76,6 @@ export async function PATCH(
         );
     }
 
-    const supabase = await createServerSupabaseClient();
     const { data: currentReferral, error: currentReferralError } = await supabase
         .from("referrals")
         .select("id, status")

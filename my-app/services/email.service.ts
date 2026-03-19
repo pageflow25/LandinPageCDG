@@ -88,6 +88,7 @@ export async function enviarEmailsIndicacao(
                     telefoneAfiliado: payload.afiliado.telefone,
                     nomeIndicado: payload.indicado.nome,
                     telefoneIndicado: payload.indicado.telefone,
+                    nomeComercial: payload.comercialNome ?? null,
                 }),
             }),
         },

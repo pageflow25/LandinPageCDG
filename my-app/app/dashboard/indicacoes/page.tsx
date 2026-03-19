@@ -1,6 +1,7 @@
-import { canUpdateReferralStatus, canDeleteReferral, canViewAllReferrals } from "@/lib/auth";
+import { canUpdateReferralStatus, canDeleteReferral, canManageUsers, canViewAllReferrals } from "@/lib/auth";
 import ReferralStatusEditor from "@/components/dashboard/ReferralStatusEditor";
 import ReferralDeleteButton from "@/components/dashboard/ReferralDeleteButton";
+import ReferralComercialEditor from "@/components/dashboard/ReferralComercialEditor";
 import { getReferralList } from "@/lib/crm";
 
 const STATUS_LABELS: Record<string, string> = {
@@ -103,7 +104,12 @@ export default async function IndicacoesPage() {
                                         <p className="text-slate-500">{item.affiliate_email}</p>
                                     </td>
                                     <td className="px-5 py-4">
-                                        {item.comercial_name ? (
+                                        {canManageUsers(role) ? (
+                                            <ReferralComercialEditor
+                                                referralId={item.id}
+                                                currentComercialId={item.comercial_profile_id}
+                                            />
+                                        ) : item.comercial_name ? (
                                             <>
                                                 <p className="font-medium text-azul-escuro">
                                                     {item.comercial_name}
