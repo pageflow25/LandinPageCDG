@@ -5,25 +5,26 @@ export default async function UsuariosPage() {
     const { items, warning } = await getProfilesList();
 
     return (
-        <section className="space-y-6 py-2">
-            <div className="rounded-[2rem] bg-white p-6 shadow-sm">
-                <p className="text-sm uppercase tracking-[0.24em] text-azul-principal/60">
-                    Usuários
+        <section className="space-y-5">
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+                <div>
+                    <p className="text-xs font-semibold uppercase tracking-[0.2em] text-azul-principal">
+                        Usuários
+                    </p>
+                    <h2 className="font-primaria mt-1 text-2xl font-bold text-crm-ink sm:text-3xl">
+                        Gestão de acesso ao CRM
+                    </h2>
+                </div>
+                <p className="max-w-md text-sm leading-6 text-crm-ink-soft">
+                    Cadastre, edite, redefina senhas e ative ou desative o acesso de cada membro da equipe.
                 </p>
-                <h2 className="font-primaria mt-2 text-3xl font-bold text-azul-escuro">
-                    Gestão de acesso ao CRM
-                </h2>
-                <p className="mt-3 max-w-3xl text-sm leading-6 text-slate-600">
-                    Cadastre, edite, redefina senhas e ative ou desative o acesso de cada membro
-                    da equipe ao micro CRM.
-                </p>
-
-                {warning && (
-                    <div className="mt-5 rounded-2xl border border-amber-200 bg-amber-50 p-4 text-sm text-amber-800">
-                        {warning}
-                    </div>
-                )}
             </div>
+
+            {warning && (
+                <div className="rounded-2xl border border-amber-200 bg-amber-50 p-4 text-sm text-amber-800 dark:border-amber-400/20 dark:bg-amber-400/10 dark:text-amber-300">
+                    {warning}
+                </div>
+            )}
 
             <UsersManager items={items} />
         </section>

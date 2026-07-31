@@ -51,7 +51,7 @@ export default function ReferralStatusEditor({
             <select
                 value={status}
                 onChange={(event) => setStatus(event.target.value as ReferralStatus)}
-                className="rounded-lg border border-slate-200 px-2 py-1 text-sm text-slate-700"
+                className="rounded-lg border border-crm-line bg-crm-surface-alt px-2 py-1 text-sm text-crm-ink"
                 disabled={isPending}
             >
                 {referralStatusValues.map((item) => (
@@ -68,7 +68,7 @@ export default function ReferralStatusEditor({
             >
                 Salvar
             </button>
-            {message && <span className="text-xs text-slate-500">{message}</span>}
+            {message && <span className="text-xs text-crm-ink-faint">{message}</span>}
         </div>
     );
 }

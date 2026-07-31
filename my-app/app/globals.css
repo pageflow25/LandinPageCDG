@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* Habilita variante "dark:" controlada por classe .dark (não por prefers-color-scheme) */
+@custom-variant dark (&:where(.dark, .dark *));
+
 /* =====================================================
    EDUCAÇÃO COMVIDA - Design System
    Paleta e tipografia conforme manual da marca
@@ -28,6 +31,29 @@
   /* Tokens semânticos */
   --background: var(--azul-institucional);
   --foreground: var(--texto-primario);
+
+  /* Tokens do CRM (dashboard) — trocam de valor no modo escuro via .dark */
+  --crm-surface: #F3F6FA;
+  --crm-surface-alt: #FFFFFF;
+  --crm-surface-raised: #F8FAFC;
+  --crm-surface-sidebar: #0B284F;
+  --crm-line: #E4E9F0;
+  --crm-line-soft: #EEF2F7;
+  --crm-ink: #0B284F;
+  --crm-ink-soft: #52657D;
+  --crm-ink-faint: #94A3B8;
+}
+
+.dark {
+  --crm-surface: #0A0A0B;
+  --crm-surface-alt: #18181B;
+  --crm-surface-raised: #232327;
+  --crm-surface-sidebar: #111113;
+  --crm-line: #313135;
+  --crm-line-soft: #232327;
+  --crm-ink: #F4F4F5;
+  --crm-ink-soft: #A0A0A8;
+  --crm-ink-faint: #6B6B72;
 }
 
 @theme inline {
@@ -95,6 +121,32 @@ html {
 .font-apoio {
   font-family: var(--font-apoio), cursive;
 }
+
+/* =====================================================
+   CRM TOKENS - Classes utilitárias puras (não via @theme,
+   para não depender de geração automática de cor do Tailwind)
+   ===================================================== */
+
+.bg-crm-surface { background-color: var(--crm-surface); }
+.bg-crm-surface-alt { background-color: var(--crm-surface-alt); }
+.bg-crm-surface-raised { background-color: var(--crm-surface-raised); }
+.bg-crm-surface-sidebar { background-color: var(--crm-surface-sidebar); }
+
+.text-crm-ink { color: var(--crm-ink); }
+.text-crm-ink-soft { color: var(--crm-ink-soft); }
+.text-crm-ink-faint { color: var(--crm-ink-faint); }
+
+.border-crm-line { border-color: var(--crm-line); }
+.border-crm-line-soft { border-color: var(--crm-line-soft); }
+
+.divide-crm-line-soft > :not([hidden]) ~ :not([hidden]) {
+  border-color: var(--crm-line-soft);
+}
+
+.placeholder\:text-crm-ink-faint::placeholder { color: var(--crm-ink-faint); }
+
+.hover\:bg-crm-line-soft:hover { background-color: var(--crm-line-soft); }
+.hover\:bg-crm-surface-raised:hover { background-color: var(--crm-surface-raised); }
 
 /* =====================================================
    LAYOUT UTILITIES

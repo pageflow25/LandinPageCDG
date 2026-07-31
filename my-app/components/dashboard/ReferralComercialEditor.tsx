@@ -69,7 +69,7 @@ export default function ReferralComercialEditor({
                 value={comercialId}
                 onChange={(e) => setComercialId(e.target.value)}
                 disabled={isPending || loading}
-                className="rounded-lg border border-slate-200 px-2 py-1 text-sm text-slate-700"
+                className="rounded-lg border border-crm-line bg-crm-surface-alt px-2 py-1 text-sm text-crm-ink"
             >
                 <option value="">
                     {loading ? "Carregando..." : "Nenhum"}
@@ -88,7 +88,7 @@ export default function ReferralComercialEditor({
             >
                 Salvar
             </button>
-            {message && <span className="text-xs text-slate-500">{message}</span>}
+            {message && <span className="text-xs text-crm-ink-faint">{message}</span>}
         </div>
     );
 }

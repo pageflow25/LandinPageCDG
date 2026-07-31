@@ -39,7 +39,9 @@ export interface DashboardSnapshot {
     userEmail?: string;
     totalReferrals: number;
     pendingReferrals: number;
+    contactedReferrals: number;
     convertedReferrals: number;
+    rejectedReferrals: number;
     usersCount: number;
     recentReferrals: ReferralRecord[];
 }
@@ -73,7 +75,9 @@ export async function getDashboardSnapshot(): Promise<DashboardSnapshot> {
             roleLabel: "Modo preparação",
             totalReferrals: 0,
             pendingReferrals: 0,
+            contactedReferrals: 0,
             convertedReferrals: 0,
+            rejectedReferrals: 0,
             usersCount: 0,
             recentReferrals: [],
         };
@@ -86,7 +90,9 @@ export async function getDashboardSnapshot(): Promise<DashboardSnapshot> {
             roleLabel: "Não autenticado",
             totalReferrals: 0,
             pendingReferrals: 0,
+            contactedReferrals: 0,
             convertedReferrals: 0,
+            rejectedReferrals: 0,
             usersCount: 0,
             recentReferrals: [],
         };
@@ -116,7 +122,9 @@ export async function getDashboardSnapshot(): Promise<DashboardSnapshot> {
             userEmail: auth.user.email,
             totalReferrals: 0,
             pendingReferrals: 0,
+            contactedReferrals: 0,
             convertedReferrals: 0,
+            rejectedReferrals: 0,
             usersCount: 0,
             recentReferrals: [],
         };
@@ -144,8 +152,14 @@ export async function getDashboardSnapshot(): Promise<DashboardSnapshot> {
     const pendingReferrals = records.filter(
         (referral) => referral.status === "pending",
     ).length;
+    const contactedReferrals = records.filter(
+        (referral) => referral.status === "contacted",
+    ).length;
     const convertedReferrals = records.filter(
         (referral) => referral.status === "converted",
+    ).length;
+    const rejectedReferrals = records.filter(
+        (referral) => referral.status === "rejected",
     ).length;
 
     let usersCount = 0;
@@ -164,7 +178,9 @@ export async function getDashboardSnapshot(): Promise<DashboardSnapshot> {
         userEmail: auth.user.email,
         totalReferrals: records.length,
         pendingReferrals,
+        contactedReferrals,
         convertedReferrals,
+        rejectedReferrals,
         usersCount,
         recentReferrals: records.slice(0, 5),
     };

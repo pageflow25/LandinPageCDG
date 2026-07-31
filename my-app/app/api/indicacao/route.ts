@@ -1,6 +1,6 @@
 import { after, NextRequest, NextResponse } from "next/server";
 import { indicacaoSchema } from "@/schemas/indicacao.schema";
-import { enviarIndicacao } from "@/services/google-sheets.service";
+// import { enviarIndicacao } from "@/services/google-sheets.service";
 import { enviarEmailsIndicacao } from "@/services/email.service";
 import { persistReferral } from "@/services/referral-persistence.service";
 
@@ -13,9 +13,11 @@ export const runtime = "nodejs";
  *
  * Responsabilidades:
  * - Validar payload com Zod
- * - Delegar envio ao service do Google Apps Script
+ * - Persistir a indicação no Supabase
  * - Disparar e-mails de agradecimento e notificação via SMTP
  * - Retornar sucesso ou erro
+ *
+ * Espelho para o Google Sheets fica desativado por padrão — ver nota abaixo.
  */
 
 export async function POST(request: NextRequest) {
@@ -44,8 +46,10 @@ export async function POST(request: NextRequest) {
             };
         });
 
-        // Google Sheets segue como espelho operacional
-        await enviarIndicacao(result.data);
+        // Espelho para o Google Sheets DESATIVADO em 2026 — parceria que consumia
+        // esses dados foi encerrada. Código mantido em services/google-sheets.service.ts
+        // para reativação futura; basta descomentar a linha abaixo (e o import no topo).
+        // await enviarIndicacao(result.data);
 
         // Agenda o envio após a resposta, sem depender de promise solta.
         after(async () => {
