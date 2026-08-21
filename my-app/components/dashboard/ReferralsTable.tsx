@@ -103,6 +103,7 @@ export default function ReferralsTable({
                                 <th className="px-5 py-3.5 font-semibold">Indicador</th>
                                 <th className="px-5 py-3.5 font-semibold">Comercial</th>
                                 <th className="px-5 py-3.5 font-semibold">Status</th>
+                                <th className="px-5 py-3.5 font-semibold">CRM</th>
                                 <th className="px-5 py-3.5 font-semibold">Criado em</th>
                                 {showActionsColumn && <th className="px-5 py-3.5 font-semibold">Ações</th>}
                             </tr>
@@ -112,7 +113,7 @@ export default function ReferralsTable({
                                 <tr>
                                     <td
                                         className="px-5 py-10 text-center text-sm text-crm-ink-faint"
-                                        colSpan={showActionsColumn ? 6 : 5}
+                                        colSpan={showActionsColumn ? 7 : 6}
                                     >
                                         Nenhuma indicação encontrada para esse filtro.
                                     </td>
@@ -155,6 +156,17 @@ export default function ReferralsTable({
                                     </td>
                                     <td className="px-5 py-3.5">
                                         <StatusBadge status={item.status} />
+                                    </td>
+                                    <td className="px-5 py-3.5">
+                                        {item.ghl_synced_at ? (
+                                            <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-100 px-2.5 py-1 text-xs font-semibold text-emerald-700 dark:bg-emerald-400/10 dark:text-emerald-300">
+                                                Sincronizado
+                                            </span>
+                                        ) : (
+                                            <span className="inline-flex items-center gap-1.5 rounded-full bg-amber-100 px-2.5 py-1 text-xs font-semibold text-amber-700 dark:bg-amber-400/10 dark:text-amber-300">
+                                                Pendente
+                                            </span>
+                                        )}
                                     </td>
                                     <td className="whitespace-nowrap px-5 py-3.5 text-crm-ink-soft">
                                         {formatDate(item.created_at)}

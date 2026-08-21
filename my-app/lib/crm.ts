@@ -21,6 +21,7 @@ export interface ReferralRecord {
     comercial_profile_id: string | null;
     comercial_name: string | null;
     comercial_email: string | null;
+    ghl_synced_at: string | null;
 }
 
 export interface ProfileRecord {
@@ -102,7 +103,7 @@ export async function getDashboardSnapshot(): Promise<DashboardSnapshot> {
     let referralsQuery = supabase
         .from("referrals")
         .select(
-            `id, affiliate_name, affiliate_email, referred_name, referred_email, referred_phone, status, created_at, comercial_profile_id,
+            `id, affiliate_name, affiliate_email, referred_name, referred_email, referred_phone, status, created_at, comercial_profile_id, ghl_synced_at,
             comercial:profiles!comercial_profile_id(full_name, email)`,
         )
         .order("created_at", { ascending: false })
@@ -145,6 +146,7 @@ export async function getDashboardSnapshot(): Promise<DashboardSnapshot> {
             comercial_profile_id: item.comercial_profile_id,
             comercial_name: comercial?.full_name ?? null,
             comercial_email: comercial?.email ?? null,
+            ghl_synced_at: item.ghl_synced_at,
         };
     });
 
@@ -209,7 +211,7 @@ export async function getReferralList(limit = 50) {
     let query = supabase
         .from("referrals")
         .select(
-            `id, affiliate_name, affiliate_email, referred_name, referred_email, referred_phone, status, created_at, comercial_profile_id,
+            `id, affiliate_name, affiliate_email, referred_name, referred_email, referred_phone, status, created_at, comercial_profile_id, ghl_synced_at,
             comercial:profiles!comercial_profile_id(full_name, email)`,
         )
         .order("created_at", { ascending: false })
@@ -236,6 +238,7 @@ export async function getReferralList(limit = 50) {
             comercial_profile_id: item.comercial_profile_id,
             comercial_name: comercial?.full_name ?? null,
             comercial_email: comercial?.email ?? null,
+            ghl_synced_at: item.ghl_synced_at,
         };
     });
 

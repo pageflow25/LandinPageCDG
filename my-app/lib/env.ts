@@ -47,6 +47,8 @@ export const env = {
         "educacao-comvida-2026",
     ),
     defaultAdminEmails: readCsvEnv("DEFAULT_ADMIN_EMAILS"),
+    ghlApiKey: readEnv("GHL_API_KEY"),
+    ghlLocationId: readEnv("GHL_LOCATION_ID"),
     internalNotificationEmails: (() => {
         const recipients = readCsvEnv("INTERNAL_NOTIFICATION_EMAILS");
         return recipients.length > 0
@@ -65,4 +67,8 @@ export function isSupabaseConfigured(): boolean {
 
 export function getSupabaseConfigMessage(): string {
     return "Supabase ainda não foi configurado. Atualize NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY e SUPABASE_SERVICE_ROLE_KEY.";
+}
+
+export function isGhlConfigured(): boolean {
+    return Boolean(env.ghlApiKey && env.ghlLocationId);
 }
