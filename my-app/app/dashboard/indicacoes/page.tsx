@@ -1,5 +1,6 @@
 import { canUpdateReferralStatus, canDeleteReferral, canManageUsers, canViewAllReferrals, getAuthContext } from "@/lib/auth";
 import ReferralsTable from "@/components/dashboard/ReferralsTable";
+import ReferralsSyncButton from "@/components/dashboard/ReferralsSyncButton";
 import { getReferralList } from "@/lib/crm";
 
 export default async function IndicacoesPage() {
@@ -21,6 +22,8 @@ export default async function IndicacoesPage() {
                     Leads capturados pela landing page, com filtro por perfil de acesso conforme a política do banco.
                 </p>
             </div>
+
+            {canManageUsers(role) && <ReferralsSyncButton />}
 
             {warning && (
                 <div className="rounded-2xl border border-amber-200 bg-amber-50 p-4 text-sm text-amber-800 dark:border-amber-400/20 dark:bg-amber-400/10 dark:text-amber-300">

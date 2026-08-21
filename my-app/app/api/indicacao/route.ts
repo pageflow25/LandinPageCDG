@@ -2,7 +2,9 @@ import { after, NextRequest, NextResponse } from "next/server";
 import { indicacaoSchema } from "@/schemas/indicacao.schema";
 // import { enviarIndicacao } from "@/services/google-sheets.service";
 import { enviarEmailsIndicacao } from "@/services/email.service";
+import { isGhlConfigured, syncReferralToGhl } from "@/services/ghl.service";
 import { persistReferral } from "@/services/referral-persistence.service";
+import { createAdminSupabaseClient } from "@/lib/supabase/admin";
 
 export const runtime = "nodejs";
 
@@ -59,6 +61,34 @@ export async function POST(request: NextRequest) {
                 console.error("[EMAIL] Erro ao disparar e-mails:", error);
             }
         });
+
+        if (persistence.mode === "supabase" && isGhlConfigured()) {
+            const referralId = persistence.referralId;
+
+            after(async () => {
+                try {
+                    const { contactId, opportunityId } = await syncReferralToGhl({
+                        referredName: result.data.indicado.nome,
+                        referredPhone: result.data.indicado.telefone,
+                        affiliateName: result.data.afiliado.nome,
+                        affiliateEmail: result.data.afiliado.email,
+                        comercialName: result.data.comercialNome ?? null,
+                    });
+
+                    const admin = createAdminSupabaseClient();
+                    await admin
+                        .from("referrals")
+                        .update({
+                            ghl_contact_id: contactId,
+                            ghl_opportunity_id: opportunityId,
+                            ghl_synced_at: new Date().toISOString(),
+                        })
+                        .eq("id", referralId);
+                } catch (error) {
+                    console.error("[GHL] Erro ao enviar indicação:", error);
+                }
+            });
+        }
 
         return NextResponse.json({
             success: true,

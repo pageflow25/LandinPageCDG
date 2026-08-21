@@ -95,6 +95,9 @@ export type Database = {
                     referred_phone: string;
                     comercial_profile_id: string | null;
                     payload_snapshot: Json | null;
+                    ghl_contact_id: string | null;
+                    ghl_opportunity_id: string | null;
+                    ghl_synced_at: string | null;
                     created_at: string;
                     updated_at: string;
                 };
@@ -113,6 +116,9 @@ export type Database = {
                     referred_phone: string;
                     comercial_profile_id?: string | null;
                     payload_snapshot?: Json | null;
+                    ghl_contact_id?: string | null;
+                    ghl_opportunity_id?: string | null;
+                    ghl_synced_at?: string | null;
                     created_at?: string;
                     updated_at?: string;
                 };
@@ -131,6 +137,9 @@ export type Database = {
                     referred_phone?: string;
                     comercial_profile_id?: string | null;
                     payload_snapshot?: Json | null;
+                    ghl_contact_id?: string | null;
+                    ghl_opportunity_id?: string | null;
+                    ghl_synced_at?: string | null;
                     created_at?: string;
                     updated_at?: string;
                 };
